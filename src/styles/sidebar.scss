@@ -1,0 +1,94 @@
+.avue-sidebar {
+    padding-top: 60px;
+    height: 100%;
+    position: relative;
+    background-color: #f4f6f9; //大背景颜色
+    transition: width .6s;
+    box-sizing: border-box;
+    .el-menu-item,
+    .el-submenu__title {
+        font-size: 14px;
+        height: 52px;
+        line-height: 52px;
+    }
+    .el-menu-item { //外层正常没有子项目菜单
+        color: rgba(255,255,255,0.7);
+        >span { padding-left: 12px; }
+        &:hover {
+            color: #274092;
+            background: #eaedf3;//鼠标经过的时候
+            span,
+            i {
+                color: #274092;
+            }
+        }
+        &.is-active {
+            background-color: #dfe3ef;//外层菜单选中颜色
+            span,
+            i {
+                color: #274092;
+            }
+            /* &:hover {
+                background-color: rgba(0, 0, 0, .8);
+            }
+            &::before {
+                content: " ";
+                top: 0;
+                left: 0;
+                bottom: 0;
+                width: 4px;
+                background: $mainBg;
+                position: absolute
+            } */
+        }
+    }
+    .el-submenu__title { //外层有子项目的菜单;就是有箭头的那种
+        color: rgba(255,255,255,0.7);
+        >span { padding-left: 12px; }
+        &:hover {
+            background: #eaedf3;//鼠标经过的时候
+            i,
+            span {
+                color: #274092;
+            }
+            // background-color:transparent; ////鼠标经过的时候
+        }
+    }
+    .el-submenu .el-menu-item {
+        height: 44px;
+        line-height: 44px;
+        &.is-active {
+            background-color: #dfe3ef; //里面的子项选中颜色
+            span,
+            i {
+                color: #274092
+            }
+            &:hover {
+                span,
+                i {
+                    color: #274092;
+                }
+            }
+        }
+        &:hover {//里面的子项鼠标经过的颜色
+            background: #eaedf3;//鼠标经过的时候
+            span,
+            i {
+                color: #274092;
+            }
+        }
+    }
+    .menu-wrapper img {
+        width: 18px; height: 18px; margin-left: -2px; margin-right: 6px;
+    }
+}
+
+.el-menu--popup { background: #fff; }
+.avue-sidebar {
+    img.icon { display: inline-block;}
+    img.icon_sel { display: none;}
+    .el-menu-item.is-active, .el-menu-item:hover, .el-submenu.is-opened, .el-submenu>.el-submenu__title:hover {
+        img.icon { display: none;}
+        img.icon_sel { display: inline-block;}
+    }
+}

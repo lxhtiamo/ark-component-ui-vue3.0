@@ -1,0 +1,593 @@
+
+.launch, .avue-panel {
+  &_title {
+    margin: 12px auto;
+  }
+
+  &_content_title {
+    line-height: 48px;
+    margin: 0 -#{$layout-offset};
+    padding-left: $layout-offset;
+    font-size: 16px;
+    border-bottom: 1px solid $borderColor;
+  }
+
+  div &_content {
+    min-height: 100%;
+    // overflow: auto;
+    padding: 0 $layout-offset;
+    border-radius: 4px;
+    background: white;
+
+    .el-card__body {
+      padding: 16px 0 0;
+    }
+  }
+}
+
+.form-panel[class] {
+  background: #fff;
+  border-radius: 4px;
+  padding: $layout-offset;
+}
+
+
+form.el-form {
+  margin-bottom: 16px;
+
+  .el-col {
+    margin-bottom: 0;
+  }
+
+  .el-form-item {
+    margin-bottom: 12px;
+
+    .el-form-item__content:after {
+      display: none;
+    }
+
+    .el-input, .el-select, .el-input__inner {
+      vertical-align: top;
+    }
+  }
+
+  .el-form-item__label {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 32px;
+  }
+
+  .el-form-item__content {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 32px;
+  }
+}
+
+div.el-form-item__error {
+  padding-top: 0;
+}
+
+.avue-crud__header {
+  div & {
+    margin-bottom: 0;
+  }
+
+  .el-form {
+    .el-form-item {
+      margin: 0 48px 0 0;
+    }
+  }
+}
+
+div.avue-crud__menu {
+  min-height: 48px;
+  line-height: 48px;
+  margin-bottom: 8px;
+}
+
+
+div .avue-form-detail__title {
+  color: #666;
+}
+
+/*其他库详情样式*/
+/*37 为底部取消和保存的高度 */
+.other-details-dialog-tab-cnt {
+  height: calc(100% - 42px);
+
+  > .el-tabs {
+    height: 100%;
+
+    > .el-tabs__content {
+      height: calc(100% - 55px);
+
+      > .el-tab-pane {
+        height: 100%;
+        overflow: auto;
+      }
+    }
+  }
+}
+
+.el-contain-div {
+  height: 100%;
+
+  .el-main-custom {
+    background: #F2F2F2;
+    margin-top: 10px
+  }
+
+  > .el-main {
+    height: 100%;
+    display: flex;
+    margin-left: 0;
+    margin-right: 0;
+
+    > .avue-crud-div {
+      max-width: 100%;
+      min-width: 80%;
+      height: 100%;
+      flex: 1;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    .avue-crud {
+      flex: 1;
+      height: 100%;
+
+      > .el-card {
+        height: 100%;
+
+        > .el-card__body {
+          height: 100%;
+          box-sizing: border-box;
+          padding: 0 12px;
+          overflow: auto;
+        }
+      }
+    }
+  }
+}
+
+/*去掉avue-crud头上面的默认按钮 */
+.remove-crud-top-btn {
+  .avue-crud__header .el-form-item .el-form-item__content button:nth-child(1) {
+    display: none;
+  }
+
+  .avue-crud__header .el-form-item .el-form-item__content button:nth-child(2) {
+    display: none;
+  }
+
+  .avue-tip {
+    display: none;
+  }
+
+  /*表单上面的搜索菜单等按钮间距*/
+  .el-form .el-form-item {
+    margin: 0 10px 0 0;
+  }
+
+  .el-form {
+    margin-bottom: 0;
+  }
+}
+
+
+/*去掉avue-crud头上面的左右按钮,如果使用  <template slot="menuLeft">  <template slot="menuRight"> 请用remove-crud-top-btn  不能用这个样式 */
+.remove-crud-top-zy-btn {
+  /*去掉表单上面的左右按钮*/
+  .avue-crud__menu {
+    min-height: 0px;
+  }
+
+
+}
+
+/*弹窗高度*/
+.customHeight {
+  height: 85%;
+
+  .el-tabs__header.is-top {
+    margin-bottom: 0;
+  }
+
+  .el-tabs__content .el-form {
+    margin-top: 15px;
+  }
+
+  /*    !*加上弹窗标题灰色*!
+      .el-dialog__header {
+          height: 30px;
+          padding: 15px 40px 20px 15px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+      }*/
+}
+
+.myForm {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: none;
+}
+
+.page-tab-cnt {
+  height: 100%;
+  width: 100%;
+  background: #FFFFFF;
+
+  > .el-tabs {
+    height: calc(100% - 95px);
+
+    > .el-tabs__content {
+      margin-left: 30px;
+      height: calc(100% - 55px);
+
+      > .el-tab-pane {
+        height: 100%;
+        overflow: auto;
+      }
+    }
+  }
+}
+
+/*输入框提示颜色*/
+.elInputDemo {
+  .el-input {
+    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+      color: #666 !important;
+    }
+
+    input:-moz-placeholder, textarea:-moz-placeholder {
+      color: #666 !important;
+    }
+
+    input::-moz-placeholder, textarea::-moz-placeholder {
+      color: #666 !important;
+    }
+
+    input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+      color: #666 !important;
+    }
+  }
+
+  .el-textarea {
+    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+      color: #666;
+    }
+
+    input:-moz-placeholder, textarea:-moz-placeholder {
+      color: #666;
+    }
+
+    input::-moz-placeholder, textarea::-moz-placeholder {
+      color: #666;
+    }
+
+    input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+      color: #666;
+    }
+  }
+}
+/*输入框提示颜色默认*/
+.elInputDemo_def {
+  .el-input {
+    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+      color: #C4C4CC !important;
+    }
+
+    input:-moz-placeholder, textarea:-moz-placeholder {
+      color: #C4C4CC !important;
+    }
+
+    input::-moz-placeholder, textarea::-moz-placeholder {
+      color: #C4C4CC !important;
+    }
+
+    input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+      color: #C4C4CC !important;
+    }
+  }
+
+  .el-textarea {
+    input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+      color: #C4C4CC;
+    }
+
+    input:-moz-placeholder, textarea:-moz-placeholder {
+      color: #C4C4CC;
+    }
+
+    input::-moz-placeholder, textarea::-moz-placeholder {
+      color: #C4C4CC;
+    }
+
+    input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+      color: #C4C4CC;
+    }
+  }
+}
+
+/*主界面顶部第二标题栏样式 外部el-header样式*/
+.topParentHeader {
+  height: auto;
+  margin-bottom: 0;
+  width: 100%;
+  padding: 0;
+}
+
+/*主界面顶部第二标题栏样式*/
+.topParent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 59px;
+  background: #FFF;
+}
+
+.remove-el-card__body {
+  /*设置表格距离高度为0,主要用在弹窗里面嵌入表格*/
+  .el-card__body {
+    padding: 0px 0;
+  }
+}
+
+
+/*列表上部条件搜索框外层div样式*/
+.search-div {
+  width: auto;
+  height: 32px;
+  padding-right: 10px;
+  padding-left: 10px;
+  background-color: #ffffff;
+  border-radius: 4px;
+  border: solid 1px #e8e9ed;
+  display: inline-block;
+  font-size: 14px;
+  /*列表上部下拉选择框样式*/
+  .search-select-style {
+    display: inline-block;
+    width: 130px !important;
+    /*去除下拉框框边框*/
+    .el-input--suffix .el-input__inner {
+      padding-left: 2px;
+      border: none;
+      background-color: #00000000;
+    }
+  }
+
+  /*列表上部时间起始选择器选择框样式*/
+  .search-select-date {
+    display: inline-block;
+
+    .el-date-editor.el-input, .el-date-editor.el-input__inner, .el-select {
+      padding-left: 2px;
+      border: none;
+      width: 252px !important;
+    }
+  }
+
+
+  /*列表上部搜索框样式*/
+  .search-input-style {
+    width: 200px !important;
+    /*去除输入框边框*/
+    .el-input__inner {
+      border: none;
+      padding-left: 2px;
+      background-color: #00000000;
+    }
+  }
+}
+
+/*表单下面的下拉选择和输入框/数字框左右半圆形*/
+.formCircleStyle {
+  form.el-form .el-form-item .el-input, form.el-form .el-form-item .el-select, form.el-form .el-form-item .el-input__inner {
+    border-radius: 4px;
+  }
+
+  /*数字框 左右半圆弧*/
+  .el-input-number__decrease {
+    border-radius: 4px 0 0 4px;
+  }
+
+  .el-input-number__increase {
+    border-radius: 0 4px 4px 0;
+  }
+
+  /*数字框高度*/
+  .el-input-number {
+    line-height: 30px;
+  }
+
+  .el-input-number.is-controls-right .el-input-number__increase {
+    border-radius: 0 4px 0 0;
+  }
+
+  .el-input-number.is-controls-right .el-input-number__decrease {
+    border-radius: 0 0 4px 0;
+  }
+
+  .el-textarea .el-input__count {
+    bottom: -20px;
+    height: 24px;
+    line-height: 24px;
+  }
+}
+
+/*输入框插槽的的样式*/
+.append {
+  .el-input-group--append .el-input__inner {
+    border-radius: 4px 0 0 4px !important;
+  }
+
+  .el-input-group--prepend .el-input__inner, .el-input-group__append {
+    border: 1px solid $mainColor;
+    border-radius: 0 4px 4px 0;
+    background: $mainColor;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .el-input-group--prepend .el-input__inner, .el-input-group__append:hover {
+    background: $hoverColor;
+    border: 1px solid $hoverColor;
+  }
+}
+
+
+/*输入框插槽中的span 选择的点击面增大*/
+.spanText {
+  margin: 0 -20px;
+  padding: 4px 20px;
+  cursor: pointer
+}
+
+
+/*输入框插槽的的样式 没有鼠标*/
+.append2 {
+  .el-input-group--append .el-input__inner {
+    border-radius: 4px 0 0 4px !important;
+  }
+
+  .el-input-group--prepend .el-input__inner, .el-input-group__append {
+    border: 1px solid $mainColor;
+    border-radius: 0 4px 4px 0;
+    background: $mainColor;
+    color: #FFFFFF;
+
+  }
+
+  .el-input-group--prepend .el-input__inner, .el-input-group__append:hover {
+    background: $hoverColor;
+    border: 1px solid $hoverColor;
+  }
+}
+
+/*输入框插槽的的样式*/
+.append3 {
+  .el-input-group--append .el-input__inner {
+    border-radius: 4px 0 0 4px !important;
+  }
+
+  .el-input-group--prepend .el-input__inner, .el-input-group__append {
+    border: 1px solid $mainColor;
+    border-radius: 0 4px 4px 0;
+    background: $mainColor;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+
+  .el-input-group--prepend .el-input__inner, .el-input-group__append:hover {
+    background: $hoverColor;
+    border: 1px solid $hoverColor;
+  }
+}
+
+/*input 属性为type="textarea 的样式*/
+.inputAreas.el-textarea .el-input__count {
+  bottom: -26px;
+}
+
+
+/*table 表格样式 主项详情使用*/
+.table-style {
+  font-family: verdana, arial, sans-serif;
+  font-size: 14px;
+  color: #333333;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 10px;
+  //margin-right: 50px;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  th {
+    padding: 8px;
+    width: 12%;
+    max-width: 12% !important;
+    height: 30px;
+    background: #FBFBFB;
+    text-align: left;
+    border: 1px solid #eeeeee;
+  }
+
+  td {
+    width: 38%;
+    max-width: 38% !important;
+    padding: 8px;
+    border: 1px solid #eeeeee;
+    text-align: left;
+    background: #FFFFFF;
+    word-wrap: break-word;
+    /*word-break:keep-all;!* 不换行 *!
+    white-space:nowrap;!* 不换行 *!
+    overflow:hidden;!* 内容超出宽度时隐藏超出部分的内容 *!
+    text-overflow:ellipsis;!* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*!*/
+  }
+
+  th:nth-child(odd) {
+    background-color: #fbfbfb;
+  }
+
+  .custome-table-collapse {
+    border-right: 1px solid #F0F2F5;
+
+    .el-table__header {
+      border-bottom: none;
+    }
+
+    .el-table__body, .el-table__footer, .el-table__header {
+      border-collapse: collapse;
+    }
+  }
+}
+
+.customSelect {
+  .el-select .el-input .el-input__inner {
+    border-radius: 4px !important;
+  }
+}
+
+.customSelect1 {
+  .el-select .el-input .el-input__inner {
+    border-radius: 4px !important;
+  }
+}
+
+/*分值table样式*/
+.score-table-style {
+  font-family: verdana, arial, sans-serif;
+  font-size: 14px;
+  color: #333333;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 10px;
+  //margin-right: 50px;
+  border-collapse: collapse;
+  table-layout: fixed;
+
+  th {
+    padding: 8px;
+    height: 30px;
+    background: #FBFBFB;
+    text-align: left;
+    border: 1px solid #eeeeee;
+  }
+
+  td {
+    padding: 8px;
+    border: 1px solid #eeeeee;
+    text-align: left;
+    background: #FFFFFF;
+    word-wrap: break-word;
+    /*word-break:keep-all;!* 不换行 *!
+    white-space:nowrap;!* 不换行 *!
+    overflow:hidden;!* 内容超出宽度时隐藏超出部分的内容 *!
+    text-overflow:ellipsis;!* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*!*/
+  }
+}
