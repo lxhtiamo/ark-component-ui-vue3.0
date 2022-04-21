@@ -84,20 +84,29 @@ export function isMail(rule, value, callback) {
 
 export function passHtmlAndSql(rule, value, callback) {
     if (value) {
-        let elStr=[];
-        if (/<[^>]+>|&[^>]+;/g.test(value)) {
-            elStr=value.match(/<[^>]+>|&[^>]+;/g);
-            return callback(new Error('包含"'+elStr[0]+'"字符，暂不支持插入'))
+        value = value + "";
+        let elStr = [];
+        if (value == "null") {
+            return callback(new Error("非法字符“null”不允许单独输入"));
         }
-        if (/insert|select|update|delete|exec|count|=|%/i.test(value)) {
-            elStr=value.match(/insert|select|update|delete|exec|count|=|%/i);
-            return callback(new Error('包含"'+elStr[0]+'"字符，暂不支持插入'))
+
+        if (value && value.toLowerCase() == "null") {
+            return callback(new Error("非法字符" + '"' + value + '"' + "不允许单独输入"));
+            // return callback(new Error('非法字符“null”不允许单独插入'))
+        }
+        if (/<[^>]+>|&[^>]+;/g.test(value)) {
+            elStr = value.match(/<[^>]+>|&[^>]+;/g);
+            return callback(new Error('包含"' + elStr[0] + '"字符，暂不支持输入'));
+        }
+        if (/insert|select|update|delete|exec|count|"|;|%/i.test(value)) {
+            elStr = value.match(/insert|select|update|delete|exec|count|"|;|%/i);
+            return callback(new Error('包含"' + elStr[0] + '"字符，暂不支持输入'));
         }
         if (/</.test(value) || />/.test(value)) {
-            return callback(new Error('包含"<",">"字符，暂不支持插入'))
+            return callback(new Error('包含"<",">"字符，暂不支持输入'));
         }
     }
-    return callback()
+    return callback();
 }
 
 //正数字
@@ -330,7 +339,7 @@ export function searchRule(value) {
     if (value) {
         value = value + '';
         // let reg = /_|%|\/|\#/i;
-        let reg =/[`~!@#$%^&*+=<>?{}|.'\\[\]·~！@#￥%……&*+={}|《》？【】]/im;
+        let reg =/[`~@#$%^&*+=<>?{}|'\\[\]·！￥…《》？【】]/im;
         if (reg.test(value)) {
             return false
         } else {

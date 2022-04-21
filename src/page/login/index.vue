@@ -11,7 +11,7 @@
 <!--        <div class="login-menu">-->
 <!--          <el-button type="primary"-->
 <!--                     size="small"-->
-<!--                     @click.native.prevent="handleCasLogin"-->
+<!--                     @click.prevent="handleCasLogin"-->
 <!--                     class="login-submit">登录-->
 <!--          </el-button>-->
 <!--        </div>-->

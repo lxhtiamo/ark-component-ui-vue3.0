@@ -1,7 +1,9 @@
 import request from '@/router/axios';
+import {componentPrefix} from '@/config/env';
 
+const serviceName = componentPrefix
 export const loginByUsername = (username, password, code, randomStr) => request({
-    url: '/login',
+    url: serviceName + '/login',
     method: 'post',
     data: {
         username,
@@ -11,86 +13,54 @@ export const loginByUsername = (username, password, code, randomStr) => request(
     }
 })
 
-export const getSystemDic = () => request({
-    url: '/dic',
-    method: 'get',
-    params: {}
-})
-
 export const getUserInfo = () => request({
-    url: '/getUserInfo',
-    method: 'get',
-    params: {}
-});
-
-export const getUserList = () => request({
-    url: '/test/user/list',
-    method: 'get',
-    params: {}
-});
-
-export const getKaptcha = () => request({
-    url: '/kaptcha',
+    url: serviceName + '/getUserInfo',
     method: 'get',
     params: {}
 });
 
 export const getMenu = () => request({
-    url: '/getMenu',
+    url: serviceName + '/getMenu',
     method: 'get',
     params: {}
 });
 
-export const getMenuAll = () => request({
-    url: '/getMenu',
-    method: 'get',
-    params: {
-        type: 0
-    }
-});
-
-export const getTableData = (page) => request({
-    url: '/user/list',
-    method: 'get',
-    params: page
-});
-
 export const logout = () => request({
-    url: '/logout',
+    url: serviceName + '/logout',
     method: 'get'
 });
 
 export const getIdaasAppCode = () => request({
-    url: '/getIdaasAppCode',
+    url: serviceName + '/getIdaasAppCode',
     method: 'get',
     params: {}
 });
 
 export const loginByCas = (url) => request({
-    url: url,
+    url: serviceName + url,
     method: 'get'
 });
 
 export const getSystemOperate = () => request({
-    url: '/getSystemOperate',
+    url: serviceName + '/getSystemOperate',
     method: 'get',
     params: {}
 });
 
 export const getUserOperate = () => request({
-    url: '/getUserOperate',
+    url: serviceName + '/getUserOperate',
     method: 'get',
     params: {}
 });
 
 export const getAppInfoByAppCode = () => request({
-    url: '/getAppInfoByAppCode',
+    url: serviceName + '/getAppInfoByAppCode',
     method: 'get',
     params: {}
 });
 
 export const getLicenseInfo = () => request({
-    url: '/getLicenseInfo',
+    url: serviceName + '/getLicenseInfo',
     method: 'get',
     params: {}
 });

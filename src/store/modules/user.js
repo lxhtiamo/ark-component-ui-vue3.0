@@ -73,14 +73,7 @@ const user = {
         //刷新token
         RefreshToken({ commit }) {
             return new Promise((resolve, reject) => {
-                getKaptcha().then(res => {
-                    const data = res.data.data;
-                    commit('SET_TOKEN', data);
-                    setToken(data);
-                    resolve(data);
-                }).catch(error => {
-                    reject(error)
-                })
+                resolve(true);
             })
         },
         // 登出
@@ -148,33 +141,6 @@ const user = {
                 })
             })
         },
-        //获取全部菜单
-        GetMenuAll({ commit }) {
-            return new Promise(resolve => {
-                getMenuAll().then((res) => {
-                    const data = res.data.data;
-                    commit('SET_MENU_ALL', data);
-                    resolve(data);
-                })
-            })
-        },
-        GetUserList() {
-            return new Promise(resolve => {
-                getUserList().then(res => {
-                    const data = res;
-                    resolve(data);
-                })
-            })
-        },
-        GetKaptcha() {
-            return new Promise(resolve => {
-                getKaptcha().then(res => {
-                    const data = res;
-                    resolve(data);
-                })
-            })
-        }
-
     },
     mutations: {
         SET_TOKEN: (state, token) => {

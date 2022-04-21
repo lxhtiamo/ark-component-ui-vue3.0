@@ -1,4 +1,7 @@
 .avue-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     position: relative;
     z-index: 3;
     color: rgba(0, 0, 0, 0.65);
@@ -10,19 +13,6 @@
     height: $avue-top-height;
     margin: 0 auto;
 }
-
-.top-menu {
-    box-sizing: border-box;
-    .el-menu-item {
-        padding: 0 15px;
-        height: 50px !important;
-        line-height: 50px !important;
-    }
-    .el-menu--horizontal > .el-menu-item.is-active {
-        border: 0;
-    }
-}
-
 .avue-logo {
     display: flex;
     align-items: center;
@@ -79,12 +69,14 @@
 }
 
 .top-bar__right {
-    position: absolute;
-    top: 0;
+    height: 52px;
+    display:flex;
+    align-items: center;
 }
 
 .top-bar__left {
     left: 0;
+    height: 52px;
 }
 
 // .top-bar__right {

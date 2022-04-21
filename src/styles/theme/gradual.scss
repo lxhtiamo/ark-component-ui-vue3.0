@@ -29,7 +29,7 @@
     .avue-sidebar,
     .logo,
     .el-menu-item,
-    .el-submenu__title,
+    .el-sub-menu__title,
     .el-menu {
         background-color: transparent !important
     }
@@ -93,13 +93,13 @@
             }
         }
     }
-    .el-submenu__title {
+    .el-sub-menu__title {
         i,
         span {
             color: #fff !important;
         }
     }
-    .el-submenu .el-menu-item {
+    .el-sub-menu .el-menu-item {
         &:hover {
             span,
             i {

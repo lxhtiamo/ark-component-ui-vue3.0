@@ -1,38 +1,29 @@
 let CompressionPlugin = require('compression-webpack-plugin');
 // 基础路径 注意发布之前要先修改这里
-let baseUrl = './'
+let baseUrl = '/'
 let path = require("path");
 let fs = require('fs');
-let loaderFile = path.resolve(__dirname, "node_modules/ir-component-ui/lib/loader.js");
+let loaderFile = path.resolve(__dirname, "./src/util/loader.js");
+console.log("loaderFile+>>>"+loaderFile)
 fs.utimes(loaderFile, new Date(), new Date(), (err) => {
     if (err)
         console.error("更新文件失败：", err);
 })
-let matchFiles = require('./loaderConfig').map(item => {
-    if (item.template) {
-        item.template = path.resolve(__dirname, item.template)
-    }
-    if (item.target) {
-        item.target = path.resolve(__dirname, item.target)
-    }
-    return item;
-})
+
+
 module.exports = {
-    publicPath: baseUrl, // 根据你的实际情况更改这里
-    lintOnSave: true,
+    publicPath: baseUrl,// 基本路径
+    outputDir: 'dist', // 输出文件目录
+    assetsDir: 'assets',
+    //lintOnSave: false,
+    lintOnSave: true,//eslint-loader 是否在保存的时候检查
     devServer: {
         publicPath: baseUrl // 和 baseUrl 保持一致
     },
     productionSourceMap: false,
     chainWebpack: (config) => {
-        //忽略的打包文件
-        config.externals({
-            'vue': 'Vue',
-            'vue-router': 'VueRouter',
-            'vuex': 'Vuex',
-            'axios': 'axios',
-            'element-ui': 'ELEMENT',
-        })
+        config.resolve.symlinks(true) //热更新
+
         const entry = config.entry('app')
         entry
             .add('babel-polyfill')
@@ -41,7 +32,6 @@ module.exports = {
             .add('classlist-polyfill')
             .end()
     },
-    //========================================
     configureWebpack: config => {
         let optimization = {//将依赖包拆分
             runtimeChunk: 'single',
@@ -83,38 +73,8 @@ module.exports = {
             loader: loaderFile,
             options: {
                 //文件映射数组
-                matchFiles: matchFiles
+               // matchFiles: matchFiles
             }
         });
-
-        // config.plugins.push(
-        //     new BundleAnalyzerPlugin(
-        //         {
-        //             analyzerMode: 'server',
-        //             analyzerHost: '127.0.0.1',
-        //             analyzerPort: 8889,
-        //             reportFilename: 'report.html',
-        //             defaultSizes: 'parsed',
-        //             openAnalyzer: true,
-        //             generateStatsFile: false,
-        //             statsFilename: 'stats.json',
-        //             statsOptions: null,
-        //             logLevel: 'info'
-        //         }
-        //     )
-        // );
     },
-    transpileDependencies: ['avue-plugin-transfer', 'avue-plugin-ueditor'],
-    //配置转发代理
-    devServer: {
-        // proxy: {
-        //     '/api': {
-        //         target: 'http://127.0.0.1:3000',
-        //         ws: true,
-        //         pathRewrite: {
-        //             '^/api': '/api'
-        //         }
-        //     },
-        // }
-    }
 }

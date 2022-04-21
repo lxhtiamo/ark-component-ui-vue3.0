@@ -8,13 +8,8 @@
                   type="password"
                   class="input-with-select animated"
                   v-model="passwd"
-                  @keyup.enter.native="handleLogin">
-          <el-button slot="append"
-                     icon="icon-bofangqi-suoping"
-                     @click="handleLogin"></el-button>
-          <el-button slot="append"
-                     icon="icon-tuichu"
-                     @click="handleLogout"></el-button>
+                  @keyup.enter="handleLogin">
+
         </el-input>
       </div>
 

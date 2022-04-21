@@ -17,15 +17,18 @@
 }
 
 .el-menu--display,
-.el-menu--display + .el-submenu__icon-arrow {
-  display: none;
+.el-menu--display + .el-sub-menu__icon-arrow {
+  display: none;//菜单搜索时候的右侧箭头隐藏
 }
-
+/*菜单折叠时候的宽度,保持和上面log宽度一致*/
+.el-menu--collapse{
+  width: $avue-left-col-width;
+}
 .el-dropdown-menu__item--divided:before,
 .el-menu,
 .el-menu--horizontal > .el-menu-item:not(.is-disabled):focus,
 .el-menu--horizontal > .el-menu-item:not(.is-disabled):hover,
-.el-menu--horizontal > .el-submenu .el-submenu__title:hover {
+.el-menu--horizontal > .el-sub-menu .el-sub-menu__title:hover {
   background-color: transparent;
 }
 
@@ -63,7 +66,7 @@
 .el-button {
   //border-color: $borderColor;
   //font-size: 14px;
-  padding: 9px 12px;
+  padding: 8px 12px;
   // border-radius: 4px;
   /*
     &:active, &:focus {
@@ -98,6 +101,9 @@
     }*/
 }
 
+.el-divider{
+  box-sizing: border-box;
+}
 div .el-input__inner {
   border-color: $borderColor;
   height: 32px;
@@ -477,26 +483,6 @@ div.el-dialog__body {
   border-color: #EBEEF5;
 }
 
-.el-dropdown-menu__item {
-  text-align: center;
-  list-style: none;
-  line-height: 36px !important;
-  height: 36px;
-  padding: 0 !important;
-  margin: 0;
-  min-width: 80px;
-  font-size: 14px;
-  color: #606266;
-  cursor: pointer;
-  outline: 0;
-}
-
-.el-dropdown-item-btn {
-  width: 100%;
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
 
 /*更多> 下来显示的组件中btn的样式*/
 .el-dropdown-item-btn-style {
@@ -582,7 +568,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
 
 /*el-drawer 头部标题样式调整*/
 .el-drawer__header {
-  //background: #e0e0e0;
+  background: #e0e0e0;
   margin-bottom: 10px;
   color: #333333;
   padding: 10px 20px 10px 20px;
@@ -609,6 +595,11 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  margin-right: 0;
+}
+/*弹窗右侧按钮*/
+.el-dialog__headerbtn {
+  top: 0;
 }
 
 /*-----------------------------------------------------一下为自己的样式-----------------------------------------------------------*/

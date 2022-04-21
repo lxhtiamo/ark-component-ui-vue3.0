@@ -2,7 +2,7 @@
   <div class="addorupdate-form">
     <el-dialog
       :close-on-click-modal="false"
-      :visible.sync="dialogFormVisible"
+      v-model="dialogFormVisible"
       :beforeClose="close"
       :title="title"
     >
@@ -18,7 +18,7 @@
             <el-row :span="24">
               <el-col :span="12">
                 <el-form-item label="用户名:" prop="username">
-                  <el-input v-model="formData.username" size="mini"></el-input>
+                  <el-input v-model="formData.username" size="default"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
@@ -39,12 +39,12 @@
           <el-col :span="22">
             <el-col :span="12">
               <el-form-item label="stars:" prop="stars">
-                <el-input v-model="formData.stars" size="mini"></el-input>
+                <el-input v-model="formData.stars" size="default"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
               <el-form-item label="码云:" prop="address">
-                <el-input v-model="formData.address" size="mini"></el-input>
+                <el-input v-model="formData.address" size="default"></el-input>
               </el-form-item>
             </el-col>
           </el-col>
@@ -135,7 +135,7 @@ export default {
       this.dialogFormVisible = false;
     },
     setTrue(row) {
-      console.log(row);
+      //console.log(row);
       if (row.unid) {
         // 编辑
         this.title = "编辑";

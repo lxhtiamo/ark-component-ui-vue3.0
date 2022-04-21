@@ -176,7 +176,7 @@ div .avue-form-detail__title {
 }
 
 
-/*去掉avue-crud头上面的左右按钮,如果使用  <template slot="menuLeft">  <template slot="menuRight"> 请用remove-crud-top-btn  不能用这个样式 */
+/*去掉avue-crud头上面的左右按钮,如果使用  <template slot="menuLeft">  <template slot="menuRight"> 请用remove-avue-crud-top-btn  不能用这个样式 */
 .remove-crud-top-zy-btn {
   /*去掉表单上面的左右按钮*/
   .avue-crud__menu {

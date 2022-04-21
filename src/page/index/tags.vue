@@ -17,14 +17,16 @@
       </el-tabs>
       <el-dropdown class="avue-tags__menu">
         <el-button type="primary"
-                   size="mini">
+                   size="default">
           更多
-          <i class="el-icon-arrow-down el-icon--right"></i>
+          <i class="ArrowDown ArrowRight"></i>
         </el-button>
-        <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="closeOthersTags">关闭其他</el-dropdown-item>
-          <el-dropdown-item @click.native="closeAllTags">关闭全部</el-dropdown-item>
-        </el-dropdown-menu>
+          <template #dropdown>
+              <el-dropdown-menu>
+                  <el-dropdown-item @click="closeOthersTags">关闭其他</el-dropdown-item>
+                  <el-dropdown-item @click="closeAllTags">关闭全部</el-dropdown-item>
+              </el-dropdown-menu>
+          </template>
       </el-dropdown>
     </div>
 

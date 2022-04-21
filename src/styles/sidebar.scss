@@ -6,13 +6,13 @@
     transition: width .6s;
     box-sizing: border-box;
     .el-menu-item,
-    .el-submenu__title {
+    .el-sub-menu__title {
         font-size: 14px;
         height: 52px;
         line-height: 52px;
     }
     .el-menu-item { //外层正常没有子项目菜单
-        color: rgba(255,255,255,0.7);
+        //color: rgba(255,255,255,0.7);
         >span { padding-left: 12px; }
         &:hover {
             color: #274092;
@@ -42,8 +42,12 @@
             } */
         }
     }
-    .el-submenu__title { //外层有子项目的菜单;就是有箭头的那种
-        color: rgba(255,255,255,0.7);
+    /*外层鼠标经过的样式*/
+    .el-sub-menu__title:hover {
+        background-color: #eaedf3;
+    }
+    .el-sub-menu__title { //外层有子项目的菜单;就是有箭头的那种
+        //color: rgba(255,255,255,0.7);
         >span { padding-left: 12px; }
         &:hover {
             background: #eaedf3;//鼠标经过的时候
@@ -54,7 +58,7 @@
             // background-color:transparent; ////鼠标经过的时候
         }
     }
-    .el-submenu .el-menu-item {
+    .el-sub-menu .el-menu-item {
         height: 44px;
         line-height: 44px;
         &.is-active {
@@ -79,7 +83,7 @@
         }
     }
     .menu-wrapper img {
-        width: 18px; height: 18px; margin-left: -2px; margin-right: 6px;
+        width: 16px; height: 16px; margin-left: -2px; margin-right: 6px;
     }
 }
 
@@ -87,8 +91,9 @@
 .avue-sidebar {
     img.icon { display: inline-block;}
     img.icon_sel { display: none;}
-    .el-menu-item.is-active, .el-menu-item:hover, .el-submenu.is-opened, .el-submenu>.el-submenu__title:hover {
+    .el-menu-item.is-active, .el-menu-item:hover, .el-sub-menu.is-opened,.el-sub-menu>.el-sub-menu__title:hover {
         img.icon { display: none;}
         img.icon_sel { display: inline-block;}
+        color:#3C94EF
     }
 }

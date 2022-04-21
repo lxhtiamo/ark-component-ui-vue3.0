@@ -1,11 +1,14 @@
-let RouterPlugin = function() {
+function isURL (s) {
+    return /^http[s]?:\/\/.*/.test(s)
+}
+let RouterPlugin = function () {
     this.$router = null;
     this.$store = null;
 
 };
-RouterPlugin.install = function(router, store) {
-    this.$router = router;
-    this.$store = store;
+RouterPlugin.install = function (option = {}) {
+    this.$router = option.router;
+    this.$store = option.store;
 
     function objToform(obj) {
         let result = [];
@@ -14,6 +17,7 @@ RouterPlugin.install = function(router, store) {
         })
         return result.join('&');
     }
+
     this.$router.$avueRouter = {
         //全局配置
         $website: this.$store.getters.website,
@@ -21,14 +25,19 @@ RouterPlugin.install = function(router, store) {
         group: '',
         safe: this,
         // 设置标题
-        setTitle: function(title) {console.log(title)},
+        setTitle: function (title) {
+            //console.log(title)
+        },
         closeTag: (value) => {
-            const tag = value || this.$store.getters.tag;
+            let tag = value || this.$store.getters.tag;
+            if (typeof value === 'string') {
+                tag = this.$store.getters.tagList.find(ele => ele.fullPath === value)
+            }
             this.$store.commit('DEL_TAG', tag)
         },
         //处理路由
-        getPath: function(params) {
-            let { src } = params;
+        getPath: function (params) {
+            let {src} = params;
             let result = src || '/';
             if (src.includes("http") || src.includes("https")) {
                 result = `/myiframe/urlPath?${objToform(params)}`;
@@ -36,88 +45,77 @@ RouterPlugin.install = function(router, store) {
             return result;
         },
         //正则处理路由
-        vaildPath: function(list, path) {
+        vaildPath: function (list, path) {
             let result = false;
             list.forEach(ele => {
                 if (new RegExp("^" + ele + ".*", "g").test(path)) {
                     result = true
                 }
-
             })
             return result;
         },
         //设置路由值
-        getValue: function(route) {
+        getValue: function (route) {
             let value = "";
             if (route.query.src) {
                 value = route.query.src;
             } else {
                 value = route.path;
             }
-            return value + route.hash ;
+            return value + route.hash;
         },
         //动态路由
-        formatRoutes: function(aMenu = [], first) {
+        formatRoutes: function (aMenu = [], first) {
             const aRouter = []
-            const propsConfig = this.$website.menu.props;
-            const propsDefault = {
-                label: propsConfig.label || 'label',
-                path: propsConfig.path || 'path',
-                icon: propsConfig.icon || 'icon',
-                children: propsConfig.children || 'children',
-                meta: propsConfig.meta || 'meta',
-            }
-            if (aMenu.length === 0) return;
+            const propsDefault = this.$website.menu.props;
+            if (aMenu && aMenu.length === 0) return;
             for (let i = 0; i < aMenu.length; i++) {
                 const oMenu = aMenu[i];
-                if (this.routerList.includes(oMenu[propsDefault.path])) return;
-                const path = (() => {
-                        if (first) {
-                            return oMenu[propsDefault.path].replace('/index', '')
-                        } else {
-                            return oMenu[propsDefault.path]
-                        }
-                    })(),
+                let path = oMenu[propsDefault.path],
                     component = oMenu.component,
                     name = oMenu[propsDefault.label],
                     icon = oMenu[propsDefault.icon],
                     children = oMenu[propsDefault.children],
+                    query = oMenu[propsDefault.query],
                     meta = oMenu[propsDefault.meta];
-
-                const isChild = children.length !== 0;
+                if (option.keepAlive) {
+                    meta.keepAlive = option.keepAlive
+                }
+                const isChild = !!(children && children.length !== 0);
                 const oRouter = {
                     path: path,
-                    component(resolve) {
+                    component: (() => {
                         // 判断是否为首路由
                         if (first) {
-                            require(['../page/index'], resolve)
-                            return
+                            return import ('../page/index')
                             // 判断是否为多层路由
                         } else if (isChild && !first) {
-                            require(['../page/index/layout'], resolve)
-                            return
+                            return import('../page/index/layout')
                             // 判断是否为最终的页面视图
                         } else {
-                            require([`../${component}.vue`], resolve)
+                            return import(`../${component}.vue`)
                         }
-                    },
-                    name: name,
-                    icon: icon,
-                    meta: meta,
+                    })(),
+                    name,
+                    icon,
+                    meta,
+                    query,
                     redirect: (() => {
-                        if (!isChild && first) return `${path}/index`
+                        if (!isChild && first) return `${path}`
                         else return '';
                     })(),
                     // 处理是否为一级路由
                     children: !isChild ? (() => {
                         if (first) {
-                            oMenu[propsDefault.path] = `${path}/index`;
+                            oMenu[propsDefault.path] = `${path}`;
+                            let result = import(`../${component}.vue`)
                             return [{
-                                component(resolve) { require([`../${component}.vue`], resolve) },
+                                component: result,
                                 icon: icon,
                                 name: name,
                                 meta: meta,
-                                path: 'index'
+                                query: query,
+                                path: ''
                             }]
                         }
                         return [];
@@ -125,17 +123,21 @@ RouterPlugin.install = function(router, store) {
                         return this.formatRoutes(children, false)
                     })()
                 }
-                aRouter.push(oRouter)
+                if (!isURL(path)) aRouter.push(oRouter)
             }
             if (first) {
+                aRouter.forEach((ele) => this.safe.$router.addRoute(ele));
                 if (!this.routerList.includes(aRouter[0][propsDefault.path])) {
-                    this.safe.$router.addRoutes(aRouter)
                     this.routerList.push(aRouter[0][propsDefault.path])
                 }
             } else {
                 return aRouter
             }
 
+        },
+        // 清除路由
+        clear: function () {
+            this.routerList = [];
         }
     }
 }

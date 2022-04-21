@@ -1,12 +1,10 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
 import user from './modules/user'
 import common from './modules/common'
 import tags from './modules/tags'
 import getters from './getters'
+import { createStore } from 'vuex'
 
-Vue.use(Vuex)
-const store = new Vuex.Store({
+export default createStore({
     modules: {
         user,
         common,
@@ -15,4 +13,4 @@ const store = new Vuex.Store({
     getters,
 })
 
-export default store
+

@@ -6,7 +6,7 @@
         <div style="display: flex;align-items: center" v-if="showBack">
           <i class="el-icon-back backIcon" @click="back"></i>
           <div style="margin-left: 5px;margin-right: 5px;display: flex;align-items: center">
-            <el-divider direction="vertical"></el-divider>
+              <el-divider direction="vertical"></el-divider>
           </div>
         </div>
         <span v-if="title">{{ title }}</span>
@@ -52,10 +52,7 @@ export default {
   },
   mounted() {
   },
-  beforeDestroy() {
-  },
-  destroyed() {
-  },
+
   methods: {
     back() {
       this.$emit('goBack')

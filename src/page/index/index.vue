@@ -34,7 +34,6 @@ import {validatenull} from '@/util/validate';
 import {calcDate} from '@/util/date.js';
 import {getStore, removeStore} from '@/util/store.js';
 import {getAppInfoByAppCode} from "@/api/user";
-
 export default {
   components: {
     tags, top, sidebar
@@ -67,20 +66,6 @@ export default {
   },
   created() {
     this.$store.dispatch("GetMenu").then(data => {
-      let errorRouter = [
-        {
-          path: "*",
-          name: 'not-found',
-          redirect: "/404"
-        }
-      ];
-      let l = this.$router.resolve({name: "not-found"});
-      if (l.resolved.matched.length <= 0) {
-        console.log("the not-found route does not exists")
-        //the route does not exists.
-        this.$router.addRoutes(errorRouter);
-        console.log(this.$router);
-      }
       if (data.length !== 0) {
         this.$router.$avueRouter.formatRoutes(data, true);
         const routeHash = getStore({name: "routeHash"});

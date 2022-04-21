@@ -4,10 +4,13 @@
             :placeholder="placeholder"
             v-model.trim="value"
             class="searchClass"
-            @keyup.enter.native="searchEnterFun"
+            @keyup.enter="searchEnterFun"
             maxlength="20"
     >
-      <el-button slot="append" icon="el-icon-search" @click.native="searchData" circle></el-button>
+        <template  #append>
+            <el-button icon="Search" @click="searchData" circle></el-button>
+        </template>
+
     </el-input>
   </div>
 </template>

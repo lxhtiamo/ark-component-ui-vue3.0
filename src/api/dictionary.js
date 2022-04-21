@@ -1,7 +1,10 @@
 import request from '@/router/axios';
+import {componentPrefix} from '@/config/env';
+
+const serviceName = componentPrefix
 
 export const getDictByPunid = (punid) => request({
-    url: '/system-dictionary/getDictionaryByPunid',
+    url: serviceName + '/system-dictionary/getDictionaryByPunid',
     method: 'get',
     params: {
         punid: punid || "",
@@ -9,19 +12,19 @@ export const getDictByPunid = (punid) => request({
 });
 
 export const addDict = (data) => request({
-    url: '/system-dictionary/addDict',
+    url: serviceName + '/system-dictionary/addDict',
     method: 'post',
     data: data
 });
 
 export const updateDict = (data) => request({
-    url: '/system-dictionary/updateDict',
+    url: serviceName + '/system-dictionary/updateDict',
     method: 'post',
     data: data
 });
 
 export const deleteDictByUnid = (unid) => request({
-    url: '/system-dictionary/deleteDict',
+    url: serviceName + '/system-dictionary/deleteDict',
     method: 'post',
     data: {
         unid,

@@ -4,7 +4,6 @@
     <el-scrollbar style="height:100%">
       <el-menu
           text-color="#2a3840"
-          active-text-color="#FFFFFF"
           unique-opened
           :default-active="nowTagValue"
           mode="vertical"
@@ -33,30 +32,7 @@ export default {
   data() {
     return {};
   },
-  created() {
-    this.$store.dispatch("GetMenu").then(data => {
-      let errorRouter = [
-        {
-          path: "*",
-          name: 'not-found',
-          redirect: "/404"
-        }
-      ];
-      let l = this.$router.resolve({ name: "not-found" });
-      if (l.resolved.matched.length <= 0) {
-        //the route does not exists.
-        this.$router.addRoutes(errorRouter);
-      }
-      if (data.length !== 0) {
-        this.$router.$avueRouter.formatRoutes(data, true);
-        const routeHash = getStore({ name: "routeHash" });
-        if (routeHash) {
-          removeStore({ name: "routeHash" });
-          this.$router.push({ path: routeHash });
-        }
-      }
-    });
-  },
+  created() {},
   computed: {
     ...mapGetters(["website", "menu", "tag", "keyCollapse", "screen"]),
     nowTagValue: function() {

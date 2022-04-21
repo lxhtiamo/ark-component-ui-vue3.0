@@ -2,7 +2,7 @@
  * 全站权限配置
  *
  */
-import router from './router/router'
+import router from './router/index'
 import store from './store'
 import {validatenull} from '@/util/validate'
 import {getToken, removeToken} from '@/util/auth'
@@ -12,13 +12,13 @@ import {saveRouteHash, getRedirectUri} from "@/util/util";
 import {casUrl} from '@/config/env';
 import {getStore, removeStore, setStore} from '@/util/store.js';
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({showSpinner: false});
 const lockPage = store.getters.website.lockPage; //锁屏页
 router.beforeEach((to, from, next) => {
     //缓冲设置
     if (to.meta.keepAlive === true && store.state.tags.tagList.some(ele => {
-            return ele.value === to.fullPath;
-        })) {
+        return ele.value === to.fullPath;
+    })) {
         to.meta.$keepAlive = true;
     } else {
         NProgress.start()
@@ -29,8 +29,8 @@ router.beforeEach((to, from, next) => {
         }
     }
     const meta = to.meta || {};
-    //next()
-    //return;
+    /*next()
+    return;*/
     // 解决登录多次跳转的问题
     if (meta.isAuth === false) {
         next()
@@ -39,14 +39,14 @@ router.beforeEach((to, from, next) => {
 
     if (getToken()) {
         if (store.getters.isLock && to.path != lockPage) { //如果系统激活锁屏，全部跳转到锁屏页
-            next({ path: lockPage })
+            next({path: lockPage})
         } else if (to.path === '/login') { //如果登录成功访问登录页跳转到主页
-            next({ path: '/' })
+            next({path: '/'})
         } else {
             //如果用户信息为空则获取用户信息，获取用户信息失败，跳转到登录页
             if (store.getters.roles.length === 0) {
                 store.dispatch('GetUserInfo').then(() => {
-                    next({path: to.path,query:to.query,params:to.params,matched:to.matched,fullPath:to.fullPath,hash:to.hash,meta:to.meta, replace: true })
+                    next({path: to.path, query: to.query, params: to.params, matched: to.matched, fullPath: to.fullPath, hash: to.hash, meta: to.meta, replace: true})
                 }).catch((err) => {
                     setStore({name: "failTo", content: to, type: 'session'});
                     removeToken()
@@ -82,7 +82,7 @@ router.beforeEach((to, from, next) => {
                     }
                 } else {
                     saveRouteHash(value);
-                    next({ path: '/' })
+                    next({path: '/'})
                 }
             }
         }
@@ -115,5 +115,5 @@ router.afterEach((to, from) => {
     const title = store.getters.tag.label;
     //根据当前的标签也获取label的值动态设置浏览器标题
     router.$avueRouter.setTitle(title);
-    console.log(to+from)
+    //console.log(to + from)
 });

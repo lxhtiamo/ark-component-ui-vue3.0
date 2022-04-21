@@ -361,7 +361,7 @@ export const objToArraySort = (obj, sortMap) => {
     if (newArray && newArray.length > 0) {
         for (let [key, value] of sortMap) {
             newSortArr.push(key);
-            console.log(value)
+            //console.log(value)
         }
     }
 
@@ -384,3 +384,25 @@ export const objChangeMap = (obj) => {
     }
     return map;
 };
+
+/**
+ * 判断字符串是否为空
+ * @param obj
+ * @returns {boolean}
+ */
+export const isStringEmpty = (obj) => {
+    if (typeof obj == "undefined" || obj == null || obj === ""||!obj||typeof obj != "string") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * 判断字符串是否非空
+ * @param obj
+ * @returns {boolean}
+ */
+export const isStringNotEmpty = (obj) => {
+    return !isStringEmpty(obj);
+}

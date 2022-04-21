@@ -7,8 +7,8 @@
  */
 import axios from 'axios'
 import store from '@/store/';
-import router from '@/router/router'
-import { Message } from 'element-ui'
+import router from './index'
+import { ElMessage } from 'element-plus'
 import website from '@/const/website';
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
@@ -64,7 +64,7 @@ axios.interceptors.response.use(res => {
 
     //如果请求为200则放过，否者默认统一处理,或者在website中配置statusWhiteList白名单自行处理
     if (status !== 200 && !statusWhiteList.includes(status)) {
-        Message({
+        ElMessage({
             message: message,
             type: 'error'
         })
@@ -75,7 +75,7 @@ axios.interceptors.response.use(res => {
     if (status !== 200) return Promise.reject(res);
     return res;
 }, error => {
-    console.log(error);
+    //console.log(error);
     NProgress.done();
     return Promise.reject(new Error(error));
 })
