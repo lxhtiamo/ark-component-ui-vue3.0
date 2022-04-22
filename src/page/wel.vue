@@ -1,7 +1,7 @@
 <template>
     <div v-if="show" style="height:100%;">
         <div class="search">
-            <el-button @click="addOrUpdate" type="primary" icon="House">新增</el-button>
+            <el-button @click="addOrUpdate" type="primary" icon="plus">新增</el-button>
         </div>
         <el-table highlight-current-row :data="data" :header-cell-style="{background: '#F5F6F8'}">
             <template v-slot:empty>
