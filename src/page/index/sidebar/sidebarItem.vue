@@ -49,6 +49,7 @@
 import {mapGetters} from 'vuex'
 import {validatenull} from '@/util/validate';
 import config from './config.js'
+import {isURL} from "../../../util/validate";
 
 let toRouter;
 let fromRouter;
@@ -163,11 +164,14 @@ export default {
         open(item) {
             if (this.screen <= 1) this.$store.commit("SET_COLLAPSE");
             this.$router.$avueRouter.group = item.group;
+            let path = this.$router.$avueRouter.getPath({name: item[this.labelKey], src: item[this.pathKey]});
+            if (isURL(item.path)) {
+                item.query = {
+                    src: item.path
+                }
+            }
             this.$router.push({
-                path: this.$router.$avueRouter.getPath({
-                    name: item[this.labelKey],
-                    src: item[this.pathKey]
-                }),
+                path: path,
                 query: item.query
             })
         }
