@@ -2,14 +2,15 @@
  * 本地全局字典
  *
  */
-import { setStore, getStore } from '@/util/store'
+import {getStore, setStore} from '@/util/store'
 import {getSystemDic} from '@/api/user'
+
 /**
  * 获取字典
  * @returns {*}
  */
 export const getDic = () => {
-    return getStore({ name: 'dic' })
+    return getStore({name: 'dic'})
 }
 
 /**
@@ -19,7 +20,7 @@ export const loadDic = () => {
     return new Promise((resolve, reject) => {
         getSystemDic().then(res => {
             const dic = res.data.data;
-            setStore({ name: 'dic', content: dic, type: 'session' })
+            setStore({name: 'dic', content: dic, type: 'session'})
             resolve(dic);
         }).catch(error => {
             reject(error)
@@ -56,20 +57,20 @@ export const DIC = {
         value: 'right'
     }],
     TYPE: [{
-            label: '一级1',
-            value: 0,
-            children: [{
-                label: '一级1二级1',
-                value: 2,
-            }]
-        }, {
-            label: '一级2',
-            value: 1,
-            children: [{
-                label: '一级2二级1',
-                value: 2,
-            }]
-        }
+        label: '一级1',
+        value: 0,
+        children: [{
+            label: '一级1二级1',
+            value: 2,
+        }]
+    }, {
+        label: '一级2',
+        value: 1,
+        children: [{
+            label: '一级2二级1',
+            value: 2,
+        }]
+    }
 
     ],
     TEST: [{
@@ -91,30 +92,30 @@ export const DIC = {
         value: 1
     }],
     GRADE: [{
-            label: "管理员",
-            value: 0
-        },
+        label: "管理员",
+        value: 0
+    },
         {
             label: "二级管理员",
             value: 1
         }
     ],
     VAILDATA: [{
-            label: "激活",
-            value: true,
-        },
+        label: "激活",
+        value: true,
+    },
         {
             label: "禁用",
             value: false,
         }
     ],
     CRUDTYPE: [{
-            label: "输入框",
-            value: ''
-        }, {
-            label: "选择框",
-            value: 'select'
-        },
+        label: "输入框",
+        value: ''
+    }, {
+        label: "选择框",
+        value: 'select'
+    },
         {
             label: "文本框",
             value: 'text'

@@ -4,6 +4,7 @@ function pluralize(time, label) {
     }
     return time + label + 's'
 }
+
 /**
  * 日期格式化
  */
@@ -25,12 +26,13 @@ export function dateFormat(date) {
             if (new RegExp("(" + k + ")").test(format))
                 format = format.replace(RegExp.$1,
                     RegExp.$1.length == 1 ? o[k] :
-                    ("00" + o[k]).substr(("" + o[k]).length));
+                        ("00" + o[k]).substr(("" + o[k]).length));
         return format;
     }
     return '';
 
 }
+
 export function timeAgo(time) {
     const between = Date.now() / 1000 - Number(time)
     if (between < 3600) {
@@ -104,12 +106,12 @@ export function formatTime(time, option) {
 /* 数字 格式化*/
 export function nFormatter(num, digits) {
     const si = [
-        { value: 1E18, symbol: 'E' },
-        { value: 1E15, symbol: 'P' },
-        { value: 1E12, symbol: 'T' },
-        { value: 1E9, symbol: 'G' },
-        { value: 1E6, symbol: 'M' },
-        { value: 1E3, symbol: 'k' }
+        {value: 1E18, symbol: 'E'},
+        {value: 1E15, symbol: 'P'},
+        {value: 1E12, symbol: 'T'},
+        {value: 1E9, symbol: 'G'},
+        {value: 1E6, symbol: 'M'},
+        {value: 1E3, symbol: 'k'}
     ]
     for (let i = 0; i < si.length; i++) {
         if (num >= si[i].value) {

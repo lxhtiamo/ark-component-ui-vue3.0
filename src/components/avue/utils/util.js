@@ -1,6 +1,4 @@
-import {
-    validatenull
-} from './validate';
+import {validatenull} from './validate';
 
 export const getObjType = obj => {
     var toString = Object.prototype.toString;
@@ -149,7 +147,7 @@ export const getObjValue = (data, params = '', type) => {
 /**
  * 初始化数据格式
  */
-export const initVal = ({ type, multiple, value, listType }) => {
+export const initVal = ({type, multiple, value, listType}) => {
     if ((['select', 'tree'].includes(type) && multiple) || ['checkbox', 'cascader'].includes(type) || ['upload'].includes(type) && listType !== 'picture-img') {
         if (!Array.isArray(value)) return (value || '').split(',');
         else return value;
@@ -267,7 +265,7 @@ export const calcCascader = (list) => {
 /**
  * 动态获取组件
  */
-export const getComponent = ({ type, component }) => {
+export const getComponent = ({type, component}) => {
     if (!validatenull(component)) {
         return component;
     } else if (type === 'select') {
@@ -294,7 +292,7 @@ export const getComponent = ({ type, component }) => {
         return 'el-upload';
     } else if (type === 'silder') {
         return 'el-slider';
-    }  else {
+    } else {
         return 'el-input';
     }
 };

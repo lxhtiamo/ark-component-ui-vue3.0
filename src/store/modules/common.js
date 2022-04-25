@@ -1,9 +1,6 @@
-import {
-    setStore,
-    getStore,
-    removeStore
-} from '@/util/store'
+import {getStore, removeStore, setStore} from '@/util/store'
 import website from '@/const/website'
+
 const common = {
 
     state: {
@@ -11,23 +8,22 @@ const common = {
         isFullScren: false,
         isShade: false,
         screen: -1,
-        isLock: getStore({ name: 'isLock' }) || false,
-        showTag: getStore({ name: 'showTag' }),
-        showDebug: getStore({ name: 'showDebug' }),
-        showCollapse: getStore({ name: 'showCollapse' }),
-        showSearch: getStore({ name: 'showSearch' }),
-        showLock: getStore({ name: 'showLock' }),
-        showFullScren: getStore({ name: 'showFullScren' }),
-        showTheme: getStore({ name: 'showTheme' }),
-        showColor: getStore({ name: 'showColor' }),
-        showMenu: getStore({ name: 'showMenu' }),
-        theme: getStore({ name: 'theme' }) || '#409EFF',
-        themeName: getStore({ name: 'themeName' }) || '',
-        lockPasswd: getStore({ name: 'lockPasswd' }) || '',
+        isLock: getStore({name: 'isLock'}) || false,
+        showTag: getStore({name: 'showTag'}),
+        showDebug: getStore({name: 'showDebug'}),
+        showCollapse: getStore({name: 'showCollapse'}),
+        showSearch: getStore({name: 'showSearch'}),
+        showLock: getStore({name: 'showLock'}),
+        showFullScren: getStore({name: 'showFullScren'}),
+        showTheme: getStore({name: 'showTheme'}),
+        showColor: getStore({name: 'showColor'}),
+        showMenu: getStore({name: 'showMenu'}),
+        theme: getStore({name: 'theme'}) || '#409EFF',
+        themeName: getStore({name: 'themeName'}) || '',
+        lockPasswd: getStore({name: 'lockPasswd'}) || '',
         website: website,
     },
-    actions: {
-    },
+    actions: {},
     mutations: {
         SET_SHADE: (state, active) => {
             state.isShade = active;

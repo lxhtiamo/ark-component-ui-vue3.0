@@ -1,6 +1,7 @@
 import * as utils from '../utils/util.js';
-import { validatenull } from '../utils/validate.js';
+import {validatenull} from '../utils/validate.js';
 import dayjs from 'dayjs';
+
 export default function () {
     return {
         methods: {

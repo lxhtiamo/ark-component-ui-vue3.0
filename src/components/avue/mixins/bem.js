@@ -31,7 +31,7 @@ const prefix = (name, mods) => {
 export default {
     methods: {
         b(el, mods) {
-            const { name } = this.$options;
+            const {name} = this.$options;
 
             if (el && typeof el !== 'string') {
                 mods = el;

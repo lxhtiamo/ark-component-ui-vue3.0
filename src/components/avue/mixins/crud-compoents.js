@@ -1,5 +1,6 @@
-import { initVal } from '../utils/util'
-import { list } from 'tcomb';
+import {initVal} from '../utils/util'
+import {list} from 'tcomb';
+
 export default function () {
     //props配置
     const propsDefault = {
@@ -27,7 +28,8 @@ export default function () {
             click: Function,
             column: {
                 type: Object,
-                default: () => { }
+                default: () => {
+                }
             },
             dicUrl: {
                 type: String,

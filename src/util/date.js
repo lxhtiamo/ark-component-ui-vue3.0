@@ -27,10 +27,10 @@ export const dateFormat = (value, formatString) => {
     //ie下new Date()的参数如果是2019-10-12，得出的结果是invalid date
     //但可以是2019/10/12,但不可以是2019/10/12 12:00:00.0(火狐也不支持毫秒数)
     let _type = Object.prototype.toString.call(value)
-    if(_type === '[object Date]'){
+    if (_type === '[object Date]') {
         return dateFtt(formatString, value)
-    }else{
-        if(_type === '[object String]'){
+    } else {
+        if (_type === '[object String]') {
             value = value.replace(/-/g, '/').replace(/\.\d*/, '')
         }
         return dateFtt(formatString, new Date(value));

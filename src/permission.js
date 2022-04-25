@@ -8,7 +8,7 @@ import {validatenull} from '@/util/validate'
 import {getToken, removeToken} from '@/util/auth'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import {saveRouteHash, getRedirectUri} from "@/util/util";
+import {getRedirectUri, saveRouteHash} from "@/util/util";
 import {casUrl} from '@/config/env';
 import {getStore, removeStore, setStore} from '@/util/store.js';
 
@@ -46,7 +46,16 @@ router.beforeEach((to, from, next) => {
             //如果用户信息为空则获取用户信息，获取用户信息失败，跳转到登录页
             if (store.getters.roles.length === 0) {
                 store.dispatch('GetUserInfo').then(() => {
-                    next({path: to.path, query: to.query, params: to.params, matched: to.matched, fullPath: to.fullPath, hash: to.hash, meta: to.meta, replace: true})
+                    next({
+                        path: to.path,
+                        query: to.query,
+                        params: to.params,
+                        matched: to.matched,
+                        fullPath: to.fullPath,
+                        hash: to.hash,
+                        meta: to.meta,
+                        replace: true
+                    })
                 }).catch((err) => {
                     setStore({name: "failTo", content: to, type: 'session'});
                     removeToken()

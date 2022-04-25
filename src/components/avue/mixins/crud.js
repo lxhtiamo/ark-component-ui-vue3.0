@@ -3,6 +3,7 @@ import {validatenull} from '../utils/validate.js';
 import {loadDic} from '../utils/dic.js';
 import crudInputNumber from '../avue-form/crud-input-number';
 import crudRadio from '../avue-form/crud-radio';
+
 export default function () {
     return {
         props: {
@@ -43,7 +44,7 @@ export default function () {
                 return this.controlSize === 'default' ? 'small' : this.controlSize;
             },
             controlSize() {
-                return this.tableOption.size ||  'default';
+                return this.tableOption.size || 'default';
             }
         },
         methods: {
@@ -55,7 +56,7 @@ export default function () {
             init() {
                 // 初始化工具
                 this.initFun();
-                this.tableOption =JSON.parse(JSON.stringify(this.option));
+                this.tableOption = JSON.parse(JSON.stringify(this.option));
                 // 规则初始化
                 this.rulesInit();
                 setTimeout(() => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="avue-contail" :class="{'avue--collapse':isCollapse}">
+  <div :class="{'avue--collapse':isCollapse}" class="avue-contail">
     <div class="avue-header">
       <top :titleList="titleList"/>
     </div>
@@ -9,12 +9,12 @@
       </div>
       <div class="avue-main">
         <div class="avue-main-div">
-          <tags @changeTitle="changeTitle" />
+          <tags @changeTitle="changeTitle"/>
           <el-scrollbar style="height: 100%">
             <keep-alive>
-              <router-view class="avue-view" v-if="$route.meta.$keepAlive" />
+              <router-view v-if="$route.meta.$keepAlive" class="avue-view"/>
             </keep-alive>
-            <router-view class="avue-view" v-if="!$route.meta.$keepAlive" />
+            <router-view v-if="!$route.meta.$keepAlive" class="avue-view"/>
           </el-scrollbar>
         </div>
       </div>
@@ -34,6 +34,7 @@ import {validatenull} from '@/util/validate';
 import {calcDate} from '@/util/date.js';
 import {getStore, removeStore} from '@/util/store.js';
 import {getAppInfoByAppCode} from "@/api/user";
+
 export default {
   components: {
     tags, top, sidebar

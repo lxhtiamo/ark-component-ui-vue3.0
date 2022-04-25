@@ -1,4 +1,5 @@
 import Layout from '@/page/index/'
+
 export default [{
     path: '/wel',
     component: Layout,

@@ -1,6 +1,7 @@
-function isURL (s) {
+function isURL(s) {
     return /^http[s]?:\/\/.*/.test(s)
 }
+
 let RouterPlugin = function () {
     this.$router = null;
     this.$store = null;

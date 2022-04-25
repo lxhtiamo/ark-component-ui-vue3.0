@@ -25,7 +25,7 @@ export function isPhone(rule, value, callback) {
  * @returns {*}
  */
 export function NotNullisPhone(rule, value, callback) {
-    if (value===''||value===undefined) {
+    if (value === '' || value === undefined) {
         return callback()
     }
     var pattern = /^1[3|4|5|7|8][0-9]{9}$|^0\d{2,3}-?\d{7,8}$/
@@ -133,6 +133,7 @@ export function IDCard(rule, value, callback) {
     }
     return callback()
 }
+
 function idCardValid(id) {
     // 1 "验证通过!", 0 //校验不通过
     var format = /^(([1][1-5])|([2][1-3])|([3][1-7])|([4][1-6])|([5][0-4])|([6][1-5])|([7][1])|([8][1-2]))\d{4}(([1][9]\d{2})|([2]\d{3}))(([0][1-9])|([1][0-2]))(([0][1-9])|([1-2][0-9])|([3][0-1]))\d{3}[0-9xX]$/;
@@ -164,10 +165,11 @@ function idCardValid(id) {
     }
     return true
 }
+
 //不为空身份证
 export function NotNullIDCard(rule, value, callback) {
     if (value) {
-        if(value===''){
+        if (value === '') {
             return callback()
         }
         if (idCardValid(value)) {
@@ -186,7 +188,7 @@ export function PortCard(rule, value, callback) {
     // 规则： 14/15开头 + 7位数字, G + 8位数字, P + 7位数字, S/D + 7或8位数字,等
     // 样本： 141234567, G12345678, P1234567
     var reg = /^([a-zA-z]|[0-9]){5,17}$/;
-    if(reg.test(value)) {
+    if (reg.test(value)) {
         // 合法
         return callback()
     } else {
@@ -197,7 +199,7 @@ export function PortCard(rule, value, callback) {
 // 港澳往来内地通行证
 export function HKCard(rule, value, callback) {
     var reg = /^([A-Z]\d{6,10}(\(\w{1}\))?)$/;
-    if(reg.test(value)) {
+    if (reg.test(value)) {
         // 合法
         return callback()
     } else {
@@ -216,6 +218,7 @@ export function TWCard(rule, value, callback) {
         return callback(new Error('请输入正确的台湾居民来往大陆通行证号码'))
     }
 }
+
 // 军官证
 export function isOfficerCard(rule, value, callback) {
     // 规则： 军/兵/士/文/职/广/（其他中文） + "字第" + 4到8位字母或数字 + "号"
@@ -227,6 +230,7 @@ export function isOfficerCard(rule, value, callback) {
         return callback(new Error('请输入正确的军官证号码'))
     }
 }
+
 // 户口本
 export function isAccountCard(rule, value, callback) {
     // 规则： 15位数字, 18位数字, 17位数字 + X
@@ -255,7 +259,7 @@ export function LONG(rule, value, callback) {
 
 //纬度
 export function LAT(rule, value, callback) {
-    let reg =  new RegExp("^-?((0|[1-8]?[0-9]?)(([.][0-9]{1,9})?)|90(([.][0]{1,9})?))$"); // 纬度范围：-90.000000000~90.000000000
+    let reg = new RegExp("^-?((0|[1-8]?[0-9]?)(([.][0-9]{1,9})?)|90(([.][0]{1,9})?))$"); // 纬度范围：-90.000000000~90.000000000
     if (!(value === null || value === undefined || value === "")) {
         if (reg.test(value)) {
             callback();
@@ -334,12 +338,13 @@ export function validateTYSHXYDM(rule, value, callback) {
     }
     return callback()
 }
+
 //搜索框非法字符校验
 export function searchRule(value) {
     if (value) {
         value = value + '';
         // let reg = /_|%|\/|\#/i;
-        let reg =/[`~@#$%^&*+=<>?{}|'\\[\]·！￥…《》？【】]/im;
+        let reg = /[`~@#$%^&*+=<>?{}|'\\[\]·！￥…《》？【】]/im;
         if (reg.test(value)) {
             return false
         } else {

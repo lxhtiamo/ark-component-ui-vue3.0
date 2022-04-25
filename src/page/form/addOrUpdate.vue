@@ -1,17 +1,17 @@
 <template>
   <div class="addorupdate-form">
     <el-dialog
-      :close-on-click-modal="false"
-      v-model="dialogFormVisible"
-      :beforeClose="close"
-      :title="title"
+        v-model="dialogFormVisible"
+        :beforeClose="close"
+        :close-on-click-modal="false"
+        :title="title"
     >
       <el-form
-        ref="form"
-        :rules="rule"
-        :model="formData"
-        label-width="100px"
-        style="margin-left: 10px"
+          ref="form"
+          :model="formData"
+          :rules="rule"
+          label-width="100px"
+          style="margin-left: 10px"
       >
         <el-row>
           <el-col :span="22">
@@ -25,10 +25,10 @@
                 <el-form-item label="类型:" prop="type">
                   <el-select v-model="formData.type" placeholder="请选择类型">
                     <el-option
-                      v-for="item in options"
-                      :key="item.value"
-                      :label="item.label"
-                      :value="item.value"
+                        v-for="item in options"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value"
                     >
                     </el-option>
                   </el-select>
@@ -51,10 +51,10 @@
           <el-col :span="22">
             <el-form-item label="介绍:" prop="info">
               <el-input
-                v-model="formData.info"
-                type="textarea"
-                resize="none"
-                :autosize="{ minRows: 2, maxRows: 6 }"
+                  v-model="formData.info"
+                  :autosize="{ minRows: 2, maxRows: 6 }"
+                  resize="none"
+                  type="textarea"
               ></el-input>
             </el-form-item>
           </el-col>

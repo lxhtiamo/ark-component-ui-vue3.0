@@ -1,5 +1,6 @@
 import {validatenull} from '@/util/validate';
 import website from '@/const/website';
+
 /**
  * 存储localStorage
  */
@@ -11,7 +12,7 @@ export const setStore = (params) => {
     } = params;
     name = website.storePrefix + name;
     let obj = {
-        dataType: typeof(content),
+        dataType: typeof (content),
         content: content,
         type: type,
         datetime: new Date().getTime()

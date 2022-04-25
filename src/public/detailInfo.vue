@@ -1,27 +1,27 @@
 <template style="margin:0 auto">
-        <el-table
-                :show-header="isShowHead"
-                :data="tableData">
-            <el-table-column
-                    prop="title"
-                    label="名称"
-                    width="250">
-            </el-table-column>
-            <el-table-column
-                    prop="value"
-                    label="内容">
-            </el-table-column>
-        </el-table>
+  <el-table
+      :data="tableData"
+      :show-header="isShowHead">
+    <el-table-column
+        label="名称"
+        prop="title"
+        width="250">
+    </el-table-column>
+    <el-table-column
+        label="内容"
+        prop="value">
+    </el-table-column>
+  </el-table>
 </template>
 
 <script>
-    export default {
-        name: "detailInfo",
-        props: ["tableData"],
-        data() {
-            return {
-                isShowHead: false,
-            }
-        }
+export default {
+  name: "detailInfo",
+  props: ["tableData"],
+  data() {
+    return {
+      isShowHead: false,
     }
+  }
+}
 </script>

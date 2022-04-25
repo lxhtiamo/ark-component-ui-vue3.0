@@ -4,7 +4,7 @@ export default (column, dic) => {
     Random = window.Mock.Random;
     let form = {};
 
-    function createName({ en }) {
+    function createName({en}) {
         if (en) {
             return Random.name(true);
         }
@@ -12,7 +12,7 @@ export default (column, dic) => {
     }
 
 
-    function createNumber({ max, min, precision }) {
+    function createNumber({max, min, precision}) {
         if (precision) {
             const number = Random.float(min, max, precision) + '';
             const index = number.indexOf('.') + 1;
@@ -22,7 +22,7 @@ export default (column, dic) => {
         }
     }
 
-    function createUrl({ header, footer }) {
+    function createUrl({header, footer}) {
         let url = Random.url();
         const index = url.indexOf('://');
         if (header === false) {
@@ -33,14 +33,14 @@ export default (column, dic) => {
         return url;
     }
 
-    function createDatetime({ format, now }) {
+    function createDatetime({format, now}) {
         if (now) {
             return Random.now(format)
         }
         return Random.datetime(format)
     }
 
-    function createText({ min, max }) {
+    function createText({min, max}) {
         return Random.csentence(min, max)
     }
 
@@ -48,7 +48,7 @@ export default (column, dic) => {
         return Random.county(true);
     }
 
-    function createDic({ dic, props, columnType, multiple }) {
+    function createDic({dic, props, columnType, multiple}) {
         const value = props.value || 'value';
         const len = dic.length;
         if (['checkbox'].includes(columnType) || multiple) {
@@ -119,6 +119,7 @@ export default (column, dic) => {
             }
         })
     }
+
     create();
     return form;
 }

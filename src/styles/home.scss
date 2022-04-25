@@ -1,154 +1,187 @@
-.homepage{
-    height: 100%;
-    .wel-cacs{
-        position: fixed;
-        top: 59px;
-        right:26px;
-    }
+.homepage {
+  height: 100%;
 
-    .max-height{
-        margin-left: -24px;
-        height: 100%;
-        .heightCalc{
-            height: calc( 100% - 304px);
-            min-height: 380px;
-            background: white;
-            margin-left: 24px;
-            .echart-wrap{
-                height: calc( 100% - 65px);
-                position: relative;
-                margin-bottom: 0;
-                .chartGauge {
-                    width: 100%;
-                    height:300px;
-                    position: absolute;
-                    top: 50%;
-                    margin-top: -150px;
-                }
-            }
+  .wel-cacs {
+    position: fixed;
+    top: 59px;
+    right: 26px;
+  }
+
+  .max-height {
+    margin-left: -24px;
+    height: 100%;
+
+    .heightCalc {
+      height: calc(100% - 304px);
+      min-height: 380px;
+      background: white;
+      margin-left: 24px;
+
+      .echart-wrap {
+        height: calc(100% - 65px);
+        position: relative;
+        margin-bottom: 0;
+
+        .chartGauge {
+          width: 100%;
+          height: 300px;
+          position: absolute;
+          top: 50%;
+          margin-top: -150px;
         }
-      .canvas{
-          width: 50%;
       }
     }
-    .issueDirNum{
-        font-size: 28px;
+
+    .canvas {
+      width: 50%;
+    }
+  }
+
+  .issueDirNum {
+    font-size: 28px;
+    color: #383c47;
+    font-weight: normal;
+  }
+
+  .el-card__body {
+    padding: 2px 0 !important;
+  }
+
+  .wddb-ol {
+    padding: 12px 20px;
+    overflow-x: scroll;
+
+    li {
+      cursor: pointer;
+      line-height: 46px;
+      margin: 0;
+      border-bottom: solid 1px #dfdfdf;
+
+      .type {
+        background-color: #3a9fff;
+        border-radius: 2px;
+        width: 46px;
+        height: 20px;
+        color: white;
+        font-size: 12px;
+        line-height: 20px;
+      }
+
+      .name {
+        font-size: 14px;
         color: #383c47;
-        font-weight: normal;
-    }
-    .el-card__body{
-        padding: 2px 0 !important;
-    }
-    .wddb-ol{
-        padding: 12px 20px;
-        overflow-x: scroll;
-        li{
-            cursor: pointer;
-            line-height: 46px;
-            margin: 0;
-            border-bottom: solid 1px #dfdfdf;
-            .type{
-                background-color: #3a9fff;
-                border-radius: 2px;
-                width: 46px;
-                height: 20px;
-                color: white;
-                font-size: 12px;
-                line-height: 20px;
-            }
-            .name{
-                font-size: 14px;
-                color: #383c47;
 
-            }
-            .time{
-                color: #999fb1;
-                font-size: 14px;
+      }
 
-            }
-        }
+      .time {
+        color: #999fb1;
+        font-size: 14px;
+
+      }
     }
-    .homt-db-title{
-        .more{
-            font-size: 14px;
-            color: #999999;
-            float: right;
-        }
-        line-height: 46px;
-        border-bottom: solid 1px #dfdfdf;
-        padding: 0 15px;
-        font-size: 16px;
-        color: #333333;
+  }
+
+  .homt-db-title {
+    .more {
+      font-size: 14px;
+      color: #999999;
+      float: right;
     }
 
+    line-height: 46px;
+    border-bottom: solid 1px #dfdfdf;
+    padding: 0 15px;
+    font-size: 16px;
+    color: #333333;
+  }
 
-    .home-container{
-        padding: 8px 0;
-        .home-inner{
-            display: inline-block;flex: 1;text-align: center;
-        }
-        .el-card__body{
-            padding: 0;
-            height: 104px;
-        }
-        .item-title{
-            font-size: 14px;
-            position: relative;
-            top: -10px;
-            color: #666d81;
-        }
-    }
-    .el-tabs__nav-wrap {
-        line-height: 50px;
 
+  .home-container {
+    padding: 8px 0;
+
+    .home-inner {
+      display: inline-block;
+      flex: 1;
+      text-align: center;
     }
-    div.basic-container{
-        padding: 0 0 16px 0 ;
-        margin-left: 26px;
+
+    .el-card__body {
+      padding: 0;
+      height: 104px;
     }
-    div.basic-container.base{
-        padding: 0;
-        .el-tabs__header{
-            margin: 0;
-        }
+
+    .item-title {
+      font-size: 14px;
+      position: relative;
+      top: -10px;
+      color: #666d81;
     }
+  }
+
+  .el-tabs__nav-wrap {
+    line-height: 50px;
+
+  }
+
+  div.basic-container {
+    padding: 0 0 16px 0;
+    margin-left: 26px;
+  }
+
+  div.basic-container.base {
+    padding: 0;
+
+    .el-tabs__header {
+      margin: 0;
+    }
+  }
 
 }
-.avue-main-div{
-    height: calc(100% - 48px);
+
+.avue-main-div {
+  height: calc(100% - 48px);
 }
 
-.homepagecopy{
-    height: 100%;
-    .wel-cacs{
-        position: fixed;
-        top: 59px;
-        right:26px;
-    }
-    .item-one{
-        height: 40%;
-        .part-right{
-            height: calc(100% - 8px);
+.homepagecopy {
+  height: 100%;
 
-        }
-        .part-left{
-            height: calc(100% - 15px);
-            .el-row{
-                height: 50%;
-                .el-col{
-                    height: 100%;
-                    .basic-container{
-                        height: 100%;
-                        .el-card{
-                            height: 100%;
-                            .el-card__body{
-                                height: 100%;
-                            }
-                        }
-                    }
-                }
-            }
-        }
+  .wel-cacs {
+    position: fixed;
+    top: 59px;
+    right: 26px;
+  }
+
+  .item-one {
+    height: 40%;
+
+    .part-right {
+      height: calc(100% - 8px);
+
     }
+
+    .part-left {
+      height: calc(100% - 15px);
+
+      .el-row {
+        height: 50%;
+
+        .el-col {
+          height: 100%;
+
+          .basic-container {
+            height: 100%;
+
+            .el-card {
+              height: 100%;
+
+              .el-card__body {
+                height: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
 }

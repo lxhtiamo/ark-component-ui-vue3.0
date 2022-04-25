@@ -18,12 +18,14 @@
 
 .el-menu--display,
 .el-menu--display + .el-sub-menu__icon-arrow {
-  display: none;//菜单搜索时候的右侧箭头隐藏
+  display: none; //菜单搜索时候的右侧箭头隐藏
 }
+
 /*菜单折叠时候的宽度,保持和上面log宽度一致*/
-.el-menu--collapse{
+.el-menu--collapse {
   width: $avue-left-col-width;
 }
+
 .el-dropdown-menu__item--divided:before,
 .el-menu,
 .el-menu--horizontal > .el-menu-item:not(.is-disabled):focus,
@@ -101,9 +103,10 @@
     }*/
 }
 
-.el-divider{
+.el-divider {
   box-sizing: border-box;
 }
+
 div .el-input__inner {
   border-color: $borderColor;
   height: 32px;
@@ -140,10 +143,12 @@ div .el-input__inner {
 i.el-input__icon {
   line-height: 32px;
 }
+
 /*el表格 无数据时候底部没有线的问题  */
 .el-table__empty-block {
   border-bottom: 1px solid #eeeeee
 }
+
 /*表格*/
 div.el-table {
   color: #666;
@@ -597,6 +602,7 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
   white-space: nowrap;
   margin-right: 0;
 }
+
 /*弹窗右侧按钮*/
 .el-dialog__headerbtn {
   top: 0;
@@ -773,7 +779,6 @@ input:-ms-input-placeholder, textarea:-ms-input-placeholder { /* Internet Explor
   vertical-align: middle;
   margin-right: 10px;
 }
-
 
 
 /*职权和主项详情头部样式*/

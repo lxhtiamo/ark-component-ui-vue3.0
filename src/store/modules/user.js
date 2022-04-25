@@ -1,9 +1,9 @@
-import { setToken, removeToken } from '@/util/auth'
-import { setStore, getStore } from '@/util/store'
-import { isURL } from '@/util/validate'
-import { deepClone } from '@/util/util'
+import {removeToken, setToken} from '@/util/auth'
+import {getStore, setStore} from '@/util/store'
+import {isURL} from '@/util/validate'
+import {deepClone} from '@/util/util'
 import webiste from '@/const/website'
-import { loginByCas, getUserInfo, getMenu, logout, getMenuAll, getUserList, getKaptcha, getSystemOperate, getUserOperate } from '@/api/user'
+import {getMenu, getSystemOperate, getUserInfo, getUserOperate, loginByCas, logout} from '@/api/user'
 
 
 function addPath(ele, first) {
@@ -21,27 +21,28 @@ function addPath(ele, first) {
     }
     ele[propsDefault.children].forEach(child => {
         if (!isURL(child[propsDefault.path])) {
-            child[propsDefault.path] = `${ele[propsDefault.path]}/${child[propsDefault.path]?child[propsDefault.path]:'index'}`
-            child[propsDefault.path] = child[propsDefault.path].replace(/\/\//g,'/')
+            child[propsDefault.path] = `${ele[propsDefault.path]}/${child[propsDefault.path] ? child[propsDefault.path] : 'index'}`
+            child[propsDefault.path] = child[propsDefault.path].replace(/\/\//g, '/')
         }
         addPath(child);
     })
 }
+
 const user = {
     state: {
         userInfo: {},
         permission: {},
         roles: [],
-        menu: getStore({ name: 'menu' }) || [],
+        menu: getStore({name: 'menu'}) || [],
         menuAll: [],
-        token: getStore({ name: 'token' }) || '',
+        token: getStore({name: 'token'}) || '',
         systemOperate: [],
         userOperate: [],
-        extras: getStore({ name: 'extras' }) || {},
+        extras: getStore({name: 'extras'}) || {},
     },
     actions: {
         // CAS登录
-        LoginByCAS({ commit }, url) {
+        LoginByCAS({commit}, url) {
             return new Promise((resolve, reject) => {
                 loginByCas(url).then(res => {
                     const data = res.data.data;
@@ -55,7 +56,7 @@ const user = {
                 })
             })
         },
-        GetUserInfo({ commit }) {
+        GetUserInfo({commit}) {
             return new Promise((resolve, reject) => {
                 getUserInfo().then((res) => {
                     const data = res.data.data;
@@ -71,13 +72,13 @@ const user = {
             })
         },
         //刷新token
-        RefreshToken({ commit }) {
+        RefreshToken({commit}) {
             return new Promise((resolve, reject) => {
                 resolve(true);
             })
         },
         // 登出
-        LogOut({ commit }) {
+        LogOut({commit}) {
             return new Promise((resolve, reject) => {
                 logout().then(() => {
                     commit('SET_TOKEN', '')
@@ -93,7 +94,7 @@ const user = {
             })
         },
         //注销session
-        FedLogOut({ commit }) {
+        FedLogOut({commit}) {
             return new Promise(resolve => {
                 commit('SET_TOKEN', '')
                 commit('SET_MENU', [])
@@ -105,12 +106,12 @@ const user = {
             })
         },
         //获取系统菜单
-        async GetMenu({ dispatch }) {
+        async GetMenu({dispatch}) {
             await dispatch("GetSystemOperate");
             await dispatch("GetUserOperate");
             return await dispatch("GetUserMenu");
         },
-        GetUserMenu({ commit }, parentId) {
+        GetUserMenu({commit}, parentId) {
             return new Promise(resolve => {
                 getMenu(parentId).then((res) => {
                     const data = res.data.data
@@ -123,7 +124,7 @@ const user = {
                 })
             })
         },
-        async GetSystemOperate({commit }) {
+        async GetSystemOperate({commit}) {
             return new Promise(resolve => {
                 getSystemOperate().then((res) => {
                     const data = res.data.data;
@@ -145,14 +146,14 @@ const user = {
     mutations: {
         SET_TOKEN: (state, token) => {
             state.token = token;
-            setStore({ name: 'token', content: state.token, type: 'session' })
+            setStore({name: 'token', content: state.token, type: 'session'})
         },
         SET_USERIFNO: (state, userInfo) => {
             state.userInfo = userInfo;
         },
         SET_MENU: (state, menu) => {
             state.menu = menu
-            setStore({ name: 'menu', content: state.menu, type: 'session' })
+            setStore({name: 'menu', content: state.menu, type: 'session'})
         },
         SET_MENU_ALL: (state, menuAll) => {
             state.menuAll = menuAll;
@@ -168,15 +169,15 @@ const user = {
         },
         SET_SYSTEM_OPERATE: (state, systemOperate) => {
             state.systemOperate = systemOperate
-            setStore({ name: 'systemOperate', content: state.systemOperate, type: 'session' })
+            setStore({name: 'systemOperate', content: state.systemOperate, type: 'session'})
         },
         SET_USER_OPERATE: (state, userOperate) => {
             state.userOperate = userOperate
-            setStore({ name: 'userOperate', content: state.userOperate, type: 'session' })
+            setStore({name: 'userOperate', content: state.userOperate, type: 'session'})
         },
         SET_EXTRAS: (state, extras) => {
             state.extras = extras
-            setStore({ name: 'extras', content: state.extras, type: 'session' })
+            setStore({name: 'extras', content: state.extras, type: 'session'})
         }
     }
 

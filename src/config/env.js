@@ -12,14 +12,12 @@ let iconfontUrl = `//at.alicdn.com/t/font_$key.css`;
 let codeType = 'text';
 const env = process.env
 if (env.NODE_ENV == 'development') {
-    baseUrl = `http://localhost:9001/demo-business`; // 开发环境地址
+    baseUrl = `http://localhost:5005/example-business`; // 开发环境地址
     if (casLoginType == 'portalwork') {
         casUrl = `http://10.230.4.92:9011/hyportalwork/#/casLogin2`;
     } else {
         casUrl = `http://218.104.238.200:11898/idaas-merge/sso`;
     }
-    baseUrl =`http://192.168.81.29:9001/baseinformation-business`; // 开发环境地址
-    casUrl = `http://218.104.238.200:11898/portalwork/#/casLogin2`;
 } else if (env.NODE_ENV == 'production') {
     baseUrl = ``; //生产环境地址，若置空时根据浏览器地址生成后端地址
     casUrl = ``;
@@ -30,7 +28,7 @@ if (env.NODE_ENV == 'development') {
 
 // 若baseUrl为空时，根据浏览器地址生成后端地址
 if (baseUrl.length == 0) {
-    baseUrl = window.location.protocol + "//" + window.location.host + "/vue-business"
+    baseUrl = window.location.protocol + "//" + window.location.host + "/example-business"
 }
 // 若casUrl为空时，根据浏览器地址生成后端地址
 if (casUrl.length == 0) {

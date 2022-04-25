@@ -1,27 +1,28 @@
 <template>
   <el-input-number v-model="text"
+                   :clearable="disabled?false:clearable"
+                   :controls-position="controlsPosition"
+                   :disabled="disabled"
+                   :label="placeholder?placeholder:`请输入${label}`"
+                   :max="maxRows"
+                   :min="minRows"
+                   :precision="precision"
+                   :readonly="readonly"
+                   :size="size"
                    style="width: 100%"
                    @change="handleChange"
-                   @click="handleClick"
-                   :precision="precision"
-                   :size="size"
-                   :min="minRows"
-                   :max="maxRows"
-                   :clearable="disabled?false:clearable"
-                   :readonly="readonly"
-                   :controls-position="controlsPosition"
-                   :label="placeholder?placeholder:`请输入${label}`"
-                   :disabled="disabled"></el-input-number>
+                   @click="handleClick"></el-input-number>
 </template>
 
 <script>
 import create from '../utils/create';
 import crudCompoents from '../mixins/crud-compoents.js';
 import crudFun from '../mixins/crud-fun.js';
+
 export default create({
   name: 'crud-input-number',
   mixins: [crudCompoents(), crudFun()],
-  data () {
+  data() {
     return {};
   },
   props: {
@@ -50,9 +51,10 @@ export default create({
     }
   },
   watch: {},
-  created () { },
-  mounted () { },
-  methods: {
-  }
+  created() {
+  },
+  mounted() {
+  },
+  methods: {}
 });
 </script>

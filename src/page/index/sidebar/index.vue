@@ -3,18 +3,18 @@
     <logo></logo>
     <el-scrollbar style="height:100%">
       <el-menu
-          text-color="#2a3840"
-          unique-opened
+          :collapse="keyCollapse"
           :default-active="nowTagValue"
-          mode="vertical"
           :show-timeout="200"
-          :collapse="keyCollapse">
+          mode="vertical"
+          text-color="#2a3840"
+          unique-opened>
         <sidebar-item
-            :menu="menu"
-            first
-            :screen="screen"
-            :props="website.menu.props"
             :collapse="keyCollapse"
+            :menu="menu"
+            :props="website.menu.props"
+            :screen="screen"
+            first
         ></sidebar-item>
       </el-menu>
     </el-scrollbar>
@@ -22,24 +22,26 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 import logo from "../logo";
 import sidebarItem from "./sidebarItem";
-import { getStore, removeStore } from "@/util/store.js";
+
 export default {
   name: "sidebar",
-  components: { sidebarItem, logo },
+  components: {sidebarItem, logo},
   data() {
     return {};
   },
-  created() {},
+  created() {
+  },
   computed: {
     ...mapGetters(["website", "menu", "tag", "keyCollapse", "screen"]),
-    nowTagValue: function() {
+    nowTagValue: function () {
       return this.$router.$avueRouter.getValue(this.$route);
     }
   },
-  mounted() {},
+  mounted() {
+  },
   methods: {}
 };
 </script>

@@ -1,31 +1,37 @@
 .el-switch-two-words, .el-switch-three-words {
-    margin-right: 10px;text-align: center;
-    .el-switch__label {
-        position: absolute;
-        top: 0;
-        display: none;
-        color: #fff;
-    }
-    .el-switch__label--right {
-        z-index: 1;
-        right: 6px;
-    }
-    .el-switch__label--left {
-        z-index: 1;
-        left: 9px;
-    }
-    .el-switch__label.is-active {
-        display: block;
-    }
-    .el-switch__core,
-    .el-switch__label {
-        width: 60px !important;
-    }
+  margin-right: 10px;
+  text-align: center;
+
+  .el-switch__label {
+    position: absolute;
+    top: 0;
+    display: none;
+    color: #fff;
+  }
+
+  .el-switch__label--right {
+    z-index: 1;
+    right: 6px;
+  }
+
+  .el-switch__label--left {
+    z-index: 1;
+    left: 9px;
+  }
+
+  .el-switch__label.is-active {
+    display: block;
+  }
+
+  .el-switch__core,
+  .el-switch__label {
+    width: 60px !important;
+  }
 }
 
 .el-switch-three-words {
-    .el-switch__core,
-    .el-switch__label {
-        width: 70px !important;
-    }
+  .el-switch__core,
+  .el-switch__label {
+    width: 70px !important;
+  }
 }

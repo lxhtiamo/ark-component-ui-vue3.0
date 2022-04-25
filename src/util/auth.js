@@ -1,6 +1,8 @@
 import Cookies from 'js-cookie'
 import website from '@/const/website';
+
 const TokenKey = website.storePrefix + 'x-access-token'
+
 export function getToken() {
     return Cookies.get(TokenKey)
 }

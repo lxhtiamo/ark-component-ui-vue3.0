@@ -228,7 +228,7 @@ export const diff = (obj1, obj2) => {
 export const findByvalue = (dic, value) => {
     let result = '';
     if (validatenull(dic)) return value;
-    if (typeof(value) == 'string' || typeof(value) == 'number' || typeof(value) == 'boolean') {
+    if (typeof (value) == 'string' || typeof (value) == 'number' || typeof (value) == 'boolean') {
         let index = 0;
         index = findArray(dic, value);
         if (index != -1) {
@@ -305,7 +305,7 @@ export const getRedirectUri = (location) => {
  */
 export const saveRouteHash = (value) => {
     if (value && value !== '/wel/index' && value !== '/wel' && value !== '/' && !value.startsWith('/login')) {
-        const routeHash = getStore({name:'routeHash'});
+        const routeHash = getStore({name: 'routeHash'});
         if (routeHash) {
             return false;
         }
@@ -391,7 +391,7 @@ export const objChangeMap = (obj) => {
  * @returns {boolean}
  */
 export const isStringEmpty = (obj) => {
-    if (typeof obj == "undefined" || obj == null || obj === ""||!obj||typeof obj != "string") {
+    if (typeof obj == "undefined" || obj == null || obj === "" || !obj || typeof obj != "string") {
         return true;
     } else {
         return false;

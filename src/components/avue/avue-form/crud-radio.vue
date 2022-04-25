@@ -1,14 +1,15 @@
 <template>
   <el-radio-group v-model="text"
+                  :disabled="disabled"
                   @change="handleChange"
-                  @click="handleClick"
-                  :disabled="disabled">
+                  @click="handleClick">
     <el-radio v-for="(item,index) in dic"
-              :label="item[valueKey]"
+              :key="index"
               :border="border"
-              :readonly="readonly"
               :disabled="item[disabledKey]"
-              :key="index">{{item[labelKey]}}</el-radio>
+              :label="item[valueKey]"
+              :readonly="readonly">{{ item[labelKey] }}
+    </el-radio>
   </el-radio-group>
 </template>
 
@@ -16,18 +17,21 @@
 import create from '../utils/create';
 import crudCompoents from '../mixins/crud-compoents.js';
 import crudFun from '../mixins/crud-fun.js';
+
 export default create({
   name: 'crud-radio',
   mixins: [crudCompoents(), crudFun()],
-  data () {
+  data() {
     return {};
   },
   props: {
     value: {}
   },
   watch: {},
-  created () { },
-  mounted () { },
+  created() {
+  },
+  mounted() {
+  },
   methods: {}
 });
 </script>
