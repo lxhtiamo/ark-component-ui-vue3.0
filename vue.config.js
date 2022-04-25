@@ -9,8 +9,6 @@ fs.utimes(loaderFile, new Date(), new Date(), (err) => {
     if (err)
         console.error("更新文件失败：", err);
 })
-
-
 module.exports = {
     publicPath: baseUrl,// 基本路径
     outputDir: 'dist', // 输出文件目录
@@ -43,10 +41,7 @@ module.exports = {
                     vendor: {
                         test: /[\\/]node_modules[\\/]/,
                         name(module) {
-                            // get the name. E.g. node_modules/packageName/not/this/part.js
-                            // or node_modules/packageName
                             const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
-                            // npm package names are URL-safe, but some servers don't like @ symbols
                             return `npm.${packageName.replace('@', '')}`
                         }
                     }

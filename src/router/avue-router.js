@@ -1,14 +1,11 @@
 import {isURL} from "../util/validate";
-
 let RouterPlugin = function () {
     this.$router = null;
     this.$store = null;
-
 };
 RouterPlugin.install = function (option = {}) {
     this.$router = option.router;
     this.$store = option.store;
-
     function objToform(obj) {
         let result = [];
         Object.keys(obj).forEach(ele => {
@@ -16,7 +13,6 @@ RouterPlugin.install = function (option = {}) {
         })
         return result.join('&');
     }
-
     this.$router.$avueRouter = {
         //全局配置
         $website: this.$store.getters.website,
@@ -127,12 +123,12 @@ RouterPlugin.install = function (option = {}) {
             if (first) {
                 if (Array.isArray(aRouter)&&aRouter.length>0){
                     for (const ele of aRouter) {
-                        if (ele.path&&isURL(ele.path)&&!ele.path.startsWith("/")){ //判断路由是否为url菜单链接,并且不是/开头的 就补上/,否则非/开头的路由会报错
+                        //判断路由是否为url菜单链接,并且不是/开头的 就补上/,否则非/开头的路由会报错
+                        if (ele.path&&isURL(ele.path)&&!ele.path.startsWith("/")){
                             ele.path='/'+ele.path
                         }
                         this.safe.$router.addRoute(ele)
                     }
-                    //aRouter.forEach((ele) => this.safe.$router.addRoute(ele))
                     if (!this.routerList.includes(aRouter[0][propsDefault.path])) {
                         this.routerList.push(aRouter[0][propsDefault.path])
                     }
