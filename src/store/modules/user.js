@@ -118,7 +118,6 @@ const user = {
                     const data = res.data.data
                     let menu = deepClone(data);
                     menu.forEach(ele => {
-                        debugger
                         addPath(ele, true);
                     })
                     commit('SET_MENU', menu)
