@@ -1,5 +1,6 @@
 <template style="margin:0 auto">
         <el-table
+            style="width: 100%"
                 :show-header="isShowHead"
                 :data="tableData">
             <el-table-column
