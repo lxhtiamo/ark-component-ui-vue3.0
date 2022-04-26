@@ -11,6 +11,7 @@
           <el-button v-if="pageType==3" @click="comeBack">返 回</el-button>
         </template>
       </publicSubTop>
+
     </el-header>
     <el-main v-show="pageType==1">
       <list ref="list" @goIndexPage="goIndexPage"></list>

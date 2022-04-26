@@ -2,33 +2,33 @@
 <template>
   <div class="table-content" style="margin-top: 10px">
     <div class="search">
-      <div class="search-div"><span>unid</span>
+      <div class="search-div" style="margin-right: 12px"><span>unid</span>
         <el-divider direction="vertical"></el-divider>
         <el-input v-model.trim="input2" class="search-input-style" clearable
                   placeholder="请输入unid"
-                  size="small" style="width:200px!important;" @keyup.enter="reQuery">
+                  size="default" style="width:200px!important;" @keyup.enter="reQuery">
         </el-input>
       </div>
-      <el-button :loading="loadingSearch" icon="search" size="small" type="primary" @click="reQuery">查 询</el-button>
-      <el-button icon="el-icon-refresh" size="small" @click="reSetSelect">重 置</el-button>
+      <el-button :loading="loadingSearch" icon="Search" size="default" type="primary" @click="reQuery">查 询</el-button>
+      <el-button icon="Refresh" size="default" @click="reSetSelect">重 置</el-button>
       <div style="margin: 10px 0">
-        <el-button icon="el-icon-plus" size="small" type="primary" @click="add">新增</el-button>
-        <el-button icon="el-icon-delete" size="small" @click="batchDel">批量删除</el-button>
+        <el-button icon="Plus" size="default" type="primary" @click="add">新增</el-button>
+        <el-button icon="Delete" size="default" @click="batchDel">批量删除</el-button>
       </div>
     </div>
     <el-table
         v-loading="loading"
-        :cell-style="rowStyleLeft"
         :data="data"
-        :header-cell-style="headClassLeft"
-        height="calc(100% - 150px)"
+        :header-cell-style="{background: '#F5F6F8'}"
+        height="100%"
         highlight-current-row
+        style="height: calc(100% - 140px)"
         @selection-change="selectionChange">
       <template v-slot:empty>
         暂无数据
       </template>
       <el-table-column type="selection" width="55"></el-table-column>
-      <el-table-column label="序号" type="index">
+      <el-table-column align="center" label="序号" type="index" width="100">
         <template v-slot="scope">
               <span>{{
                   (page.currentPage - 1) * page.pageSize + scope.$index + 1
@@ -49,18 +49,18 @@
       <el-table-column label="消息发送对象名称" prop="sendName"></el-table-column>
       <el-table-column fixed="right" label="操作" width="180">
         <template v-slot="scope">
-          <el-button :disabled="btnIsDisabled(scope.row)" size="small" type="text"
+          <el-button :disabled="btnIsDisabled(scope.row)" size="default" type="text"
                      @click="editItem(scope.row,scope.index)">修改
           </el-button>
-          <el-button :disabled="btnIsDisabled(scope.row)" size="small" type="text"
+          <el-button :disabled="btnIsDisabled(scope.row)" size="default" type="text"
                      @click="delItem(scope.row,scope.index)">删除
           </el-button>
-          <el-button size="small" type="text" @click="openDetails(scope.row,scope.index)">查看</el-button>
+          <el-button size="default" type="text" @click="openDetails(scope.row,scope.index)">查看</el-button>
         </template>
       </el-table-column>
     </el-table>
     <!-- 分页控件 -->
-    <div class="page-section flex-row" style="background-color: white">
+    <div class="page-section">
       <span class="custom-page-total">共 {{ page.total }} 条</span>
       <el-pagination
           :current-page="page.currentPage"
@@ -75,13 +75,11 @@
       >
       </el-pagination>
     </div>
-    <el-dialog v-if='showDetailDialog' v-model:visible="showDetailDialog" :before-close="handleClose"
-               :close-on-click-modal="false"
+    <el-dialog v-if='showDetailDialog' v-model="showDetailDialog" :before-close="handleClose" :close-on-click-modal="false"
                :title="title" customClass="customHeight" width="70%">
       <detail v-if="detail" ref="child1" :itemData="detail"/>
     </el-dialog>
-    <el-dialog v-if='showAddDialog' v-model:visible="showAddDialog" :before-close="handleClose"
-               :close-on-click-modal="false"
+    <el-dialog v-if='showAddDialog' v-model="showAddDialog" :before-close="handleClose" :close-on-click-modal="false"
                :title="title" customClass="customHeight" width="70%">
       <add ref="child1" :details="detail" v-on:closeDialog="closeDialog"/>
     </el-dialog>
@@ -130,12 +128,7 @@ export default {
   unmounted() {
   },
   methods: {
-    headClassLeft() {
-      return "height:48px !important;padding:0px;font-size: 14px;color: #666 !important;background-color: #f5f6f8 !important;border: none !important;";
-    },
-    rowStyleLeft() {
-      return "padding:0px;height:48px;font-family: PingFang SC;font-size: 14px;font-weight: normal;font-stretch: normal;line-height: 48px;letter-spacing: 0px;color: #666;";
-    },
+
     btnIsDisabled(row) {
       if (row) {
         return false;
@@ -159,6 +152,11 @@ export default {
           .then(res => {
             this.page.total = res.data.total;
             this.data = res.data.data;
+            this.data.push(...this.data)
+            this.data.push(...this.data)
+            this.data.push(...this.data)
+            this.data.push(...this.data)
+
             //防止搜索时候切换标签导致缓存的currentPage索引出界返回空数据 重新定位索引获取一次数据
             if (this.page.total > 0 && this.page.currentPage > 1) {
               if (this.data == null || this.data.length == 0) {

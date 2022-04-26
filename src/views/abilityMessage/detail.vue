@@ -3,7 +3,7 @@
   <div v-loading="loading" class="tab-cnt-details">
     <el-tabs v-model="activeName" @tab-click="handleClick">
       <el-tab-pane label="基本信息" name="info">
-        <detailInfo :tableData="tableData" style="padding-left: 24px;padding-right: 24px"></detailInfo>
+        <detailInfo :tableData="tableData"></detailInfo>
       </el-tab-pane>
     </el-tabs>
   </div>
