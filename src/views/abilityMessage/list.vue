@@ -152,10 +152,6 @@ export default {
           .then(res => {
             this.page.total = res.data.total;
             this.data = res.data.data;
-            this.data.push(...this.data)
-            this.data.push(...this.data)
-            this.data.push(...this.data)
-            this.data.push(...this.data)
 
             //防止搜索时候切换标签导致缓存的currentPage索引出界返回空数据 重新定位索引获取一次数据
             if (this.page.total > 0 && this.page.currentPage > 1) {
