@@ -1,4 +1,5 @@
 import {isURL} from "../util/validate";
+
 let RouterPlugin = function () {
     this.$router = null;
     this.$store = null;
@@ -6,6 +7,7 @@ let RouterPlugin = function () {
 RouterPlugin.install = function (option = {}) {
     this.$router = option.router;
     this.$store = option.store;
+
     function objToform(obj) {
         let result = [];
         Object.keys(obj).forEach(ele => {
@@ -13,6 +15,7 @@ RouterPlugin.install = function (option = {}) {
         })
         return result.join('&');
     }
+
     this.$router.$avueRouter = {
         //全局配置
         $website: this.$store.getters.website,
@@ -82,13 +85,13 @@ RouterPlugin.install = function (option = {}) {
                     component: (() => {
                         // 判断是否为首路由
                         if (first) {
-                            return () =>import ('../page/index')
+                            return () => import ('../page/index')
                             // 判断是否为多层路由
                         } else if (isChild && !first) {
-                            return () =>import('../page/index/layout')
+                            return () => import('../page/index/layout')
                             // 判断是否为最终的页面视图
                         } else {
-                            return () =>import(`../${component}.vue`)
+                            return () => import(`../${component}.vue`)
                         }
                     })(),
                     name,
@@ -103,7 +106,7 @@ RouterPlugin.install = function (option = {}) {
                     children: !isChild ? (() => {
                         if (first) {
                             oMenu[propsDefault.path] = `${path}`;
-                            let result = () =>import(`../${component}.vue`)
+                            let result = () => import(`../${component}.vue`)
                             return [{
                                 component: result,
                                 icon: icon,
@@ -121,11 +124,11 @@ RouterPlugin.install = function (option = {}) {
                 aRouter.push(oRouter)
             }
             if (first) {
-                if (Array.isArray(aRouter)&&aRouter.length>0){
+                if (Array.isArray(aRouter) && aRouter.length > 0) {
                     for (const ele of aRouter) {
                         //判断路由是否为url菜单链接,并且不是/开头的 就补上/,否则非/开头的路由会报错
-                        if (ele.path&&isURL(ele.path)&&!ele.path.startsWith("/")){
-                            ele.path='/'+ele.path
+                        if (ele.path && isURL(ele.path) && !ele.path.startsWith("/")) {
+                            ele.path = '/' + ele.path
                         }
                         this.safe.$router.addRoute(ele)
                     }

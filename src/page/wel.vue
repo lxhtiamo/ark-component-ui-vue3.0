@@ -39,6 +39,8 @@
         ref="addOrUpdate"
         @saveOrUpdate="saveOrUpdate">
     </add-or-update>
+    <iframe frameborder="0" scrolling="no" src="https://element-plus.org/zh-CN/component/form.html"
+            style="height: 800px;width: 100%;overflow: hidden"/>
   </div>
 </template>
 <script>

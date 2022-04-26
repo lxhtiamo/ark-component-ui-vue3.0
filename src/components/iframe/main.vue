@@ -1,14 +1,14 @@
 <template>
-    <div class="iframe-box">
-        <iframe v-if="nowTagValue"
-                :src='nowTagValue'
-                class="iframe"
-                ref="iframe"></iframe>
-        <iframe v-else
-                :src="urlPath"
-                class="iframe"
-                ref="iframe"></iframe>
-    </div>
+  <div class="iframe-box">
+    <iframe v-if="nowTagValue"
+            ref="iframe"
+            :src='nowTagValue'
+            class="iframe"></iframe>
+    <iframe v-else
+            ref="iframe"
+            :src="urlPath"
+            class="iframe"></iframe>
+  </div>
 </template>
 
 <script>
@@ -16,132 +16,132 @@ import {mapGetters} from 'vuex'
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 export default {
-    name: 'AvueIframe',
-    data() {
-        return {
-            flag: 1,
-            urlPath: this.getUrlPath() //iframe src 路径
-        }
-    },
-    created() {
-        NProgress.configure({showSpinner: false})
-    },
-    mounted() {
-        this.load()
-        this.resize()
-    },
-    computed: {
-        nowTagValue() {
-            if (this.$route.query.src) {
-                return this.$route.query.src
-            }
-            return this.$router.$avueRouter.getValue(this.$route)
-        }
-    },
-    props: ['routerPath'],
-    watch: {
-        $route: function () {
-            this.load()
-        },
-        routerPath: function () {
-            // 监听routerPath变化，改变src路径
-            this.urlPath = this.getUrlPath()
-        }
-    },
-    components: {
-        ...mapGetters(['screen']),
-    },
-    methods: {
-        // 显示等待框
-        show() {
-            NProgress.start()
-        },
-        // 隐藏等待狂
-        hide() {
-            NProgress.done()
-        },
-        // 加载浏览器窗口变化自适应
-        resize() {
-            window.onresize = () => {
-                this.iframeInit()
-            }
-        },
-        // 加载组件
-        load() {
-            this.show()
-            //iframe带上userUnid的值
-            // this.$route.query.src += "?userUnid=" + this.$store.state.user.userInfo.userUnid;
-            var flag = true //URL是否包含问号
-            if (this.$route.query && this.$route.query.src && this.$route.query.src.indexOf('?') == -1) {
-                flag = false
-            }
-            var list = []
-            for (var key in this.$route.query) {
-                if (key != 'src' && key != 'name') {
-                    list.push(`${key}= this.$route.query[key]`)
-                }
-            }
-            list = list.join('&').toString()
-            if (flag) {
-                this.$route.query.src = `${this.$route.query.src}${
-                    list.length > 0 ? `&list` : ''
-                }`
-            } else {
-                this.$route.query.src = `${this.$route.query.src}${
-                    list.length > 0 ? `?list` : ''
-                }`
-            }
-            //超时3s自动隐藏等待狂，加强用户体验
-            let time = 3
-            const timeFunc = setInterval(() => {
-                time--
-                if (time == 0) {
-                    this.hide()
-                    clearInterval(timeFunc)
-                }
-            }, 1000)
-            this.iframeInit()
-        },
-        //iframe窗口初始化
-        iframeInit() {
-            const iframe = this.$refs.iframe
-            const clientHeight = document.documentElement.clientHeight - (screen > 1 ? 200 : 130);
-            iframe.style.height = `${clientHeight}px`
-            if (iframe.attachEvent) {
-                iframe.attachEvent('onload', () => {
-                    this.hide()
-                })
-            } else {
-                iframe.onload = () => {
-                    this.hide()
-                }
-            }
-        },
-        getUrlPath: function () {
-            //获取 iframe src 路径
-            let url = window.location.href
-            url = url.replace('/myiframe', '')
-            if (this.$route.query.src) {
-                url = this.$route.query.src
-            }
-            return url
-        }
+  name: 'AvueIframe',
+  data() {
+    return {
+      flag: 1,
+      urlPath: this.getUrlPath() //iframe src 路径
     }
+  },
+  created() {
+    NProgress.configure({showSpinner: false})
+  },
+  mounted() {
+    this.load()
+    this.resize()
+  },
+  computed: {
+    nowTagValue() {
+      if (this.$route.query.src) {
+        return this.$route.query.src
+      }
+      return this.$router.$avueRouter.getValue(this.$route)
+    }
+  },
+  props: ['routerPath'],
+  watch: {
+    $route: function () {
+      this.load()
+    },
+    routerPath: function () {
+      // 监听routerPath变化，改变src路径
+      this.urlPath = this.getUrlPath()
+    }
+  },
+  components: {
+    ...mapGetters(['screen']),
+  },
+  methods: {
+    // 显示等待框
+    show() {
+      NProgress.start()
+    },
+    // 隐藏等待狂
+    hide() {
+      NProgress.done()
+    },
+    // 加载浏览器窗口变化自适应
+    resize() {
+      window.onresize = () => {
+        this.iframeInit()
+      }
+    },
+    // 加载组件
+    load() {
+      this.show()
+      //iframe带上userUnid的值
+      // this.$route.query.src += "?userUnid=" + this.$store.state.user.userInfo.userUnid;
+      var flag = true //URL是否包含问号
+      if (this.$route.query && this.$route.query.src && this.$route.query.src.indexOf('?') == -1) {
+        flag = false
+      }
+      var list = []
+      for (var key in this.$route.query) {
+        if (key != 'src' && key != 'name') {
+          list.push(`${key}= this.$route.query[key]`)
+        }
+      }
+      list = list.join('&').toString()
+      if (flag) {
+        this.$route.query.src = `${this.$route.query.src}${
+            list.length > 0 ? `&list` : ''
+        }`
+      } else {
+        this.$route.query.src = `${this.$route.query.src}${
+            list.length > 0 ? `?list` : ''
+        }`
+      }
+      //超时3s自动隐藏等待狂，加强用户体验
+      let time = 3
+      const timeFunc = setInterval(() => {
+        time--
+        if (time == 0) {
+          this.hide()
+          clearInterval(timeFunc)
+        }
+      }, 1000)
+      this.iframeInit()
+    },
+    //iframe窗口初始化
+    iframeInit() {
+      const iframe = this.$refs.iframe
+      const clientHeight = document.documentElement.clientHeight - (screen > 1 ? 200 : 130);
+      iframe.style.height = `${clientHeight}px`
+      if (iframe.attachEvent) {
+        iframe.attachEvent('onload', () => {
+          this.hide()
+        })
+      } else {
+        iframe.onload = () => {
+          this.hide()
+        }
+      }
+    },
+    getUrlPath: function () {
+      //获取 iframe src 路径
+      let url = window.location.href
+      url = url.replace('/myiframe', '')
+      if (this.$route.query.src) {
+        url = this.$route.query.src
+      }
+      return url
+    }
+  }
 }
 </script>
 
 <style lang="scss">
 .iframe-box {
-    height: 100%;
-    background: white;
+  height: 100%;
+  background: white;
 }
 
 .iframe {
-    width: 100%;
-    height: 100%;
-    border: 0;
-    overflow: hidden;
-    box-sizing: border-box;
-    padding-right: 15px;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  padding-right: 15px;
 }
 </style>

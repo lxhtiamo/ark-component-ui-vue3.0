@@ -22,6 +22,7 @@
 @import './home.scss';
 //滑动按钮
 @import './el-switch.scss';
+
 .h1,
 .h2,
 .h3,
@@ -34,7 +35,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 500;
+  font-weight: 500;
 }
 
 @include scrollBar();
@@ -60,27 +61,27 @@ p,
 blockquote,
 th,
 td {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 * {
-    outline: none !important;
+  outline: none !important;
 }
 
 body {
-    font-family:"Microsoft YaHei";
-    line-height: 2;
+  font-family: "Microsoft YaHei";
+  line-height: 2;
 }
 
 html,
 body {
-    height: 100%;
+  height: 100%;
 }
 
 fieldset,
 img {
-    border: 0;
+  border: 0;
 }
 
 ol,
@@ -88,31 +89,31 @@ ul {
 }
 
 em {
-   // font-style: normal;
+  // font-style: normal;
 }
 
 input,
 button,
 select,
 textarea {
-    outline: none;
+  outline: none;
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }
 
 //为了使文本段落左右两边对齐
 p {
-    word-wrap: break-word
+  word-wrap: break-word
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 i {
-    display: inline-block;
+  display: inline-block;
 }
 
 
@@ -123,13 +124,13 @@ cite,
 code,
 em,
 th {
-    font-weight: normal;
-    //font-style: normal;
+  font-weight: normal;
+  //font-style: normal;
 }
 
 a {
-    text-decoration: none;
-    display: inline-block;
+  text-decoration: none;
+  display: inline-block;
 }
 
 
@@ -141,137 +142,140 @@ a {
 a:hover,
 a:active,
 a:focus {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 table {
-    border-collapse: collapse;
-    border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .padding {
-    padding: 0 !important;
+  padding: 0 !important;
 }
 
 .margin {
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 .pull-right {
-    float: right !important;
+  float: right !important;
 }
 
 .pull-left {
-    float: left !important;
+  float: left !important;
 }
 
 .pull-center {
-    text-align: center;
+  text-align: center;
 }
 
 .pull-flex {
-    display: flex;
+  display: flex;
 }
 
 .pull-overflow {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .pull-auto {
-    height: auto;
-    overflow: hidden;
+  height: auto;
+  overflow: hidden;
 }
 
 .pull-height {
-    height: 100%;
-    overflow: hidden;
+  height: 100%;
+  overflow: hidden;
 }
 
 .pull-fixed {
-    position: fixed;
-    left: 0;
-    top: 0;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
 .text-white {
-    color: #fff;
+  color: #fff;
 }
 
 .grayMode {
-    filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .tree-label {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
+
 .tree-node {
-    width: 80%;
-    -ms-flex: 1;
-    flex: 1;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-    font-size: 14px;
+  width: 80%;
+  -ms-flex: 1;
+  flex: 1;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  font-size: 14px;
 }
 
 input, textarea {
-    font-family: Tahoma, Verdana, Arial;
-    font-size: 9pt;
+  font-family: Tahoma, Verdana, Arial;
+  font-size: 9pt;
 }
 
 .dialog-footer {
-    text-align: center;
+  text-align: center;
 }
 
 .el-input.is-disabled .el-input__inner {
-    background-color: white;
-    color: #333;
+  background-color: white;
+  color: #333;
 }
 
 .avue-crud__pagination div.el-pagination {
-    float: none;
-    text-align: right;
-    .el-pagination__total {
-        float: left;
-    }
+  float: none;
+  text-align: right;
+
+  .el-pagination__total {
+    float: left;
+  }
 }
 
 .choose-num {
-    margin-right: 10px;
+  margin-right: 10px;
 }
 
 
 .table-content {
-    width: 100%;
+  width: 100%;
 }
 
 .flex-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
 }
 
 // 自定义分页组件样式
 .page-section {
-    height: 50px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    line-height: 50px;
-    .custom-page-total {
-        font-size: 14px;
-        color: #808ba7;
-        margin-left: 24px;
-    }
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  line-height: 50px;
+
+  .custom-page-total {
+    font-size: 14px;
+    color: #808ba7;
+    margin-left: 24px;
+  }
 }

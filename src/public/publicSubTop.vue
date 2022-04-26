@@ -2,11 +2,14 @@
 <template>
   <div style="border-bottom: 1px solid #f0f1f4">
     <div class="topParent">
-      <div style="float: left;padding-left: 12px;font-size: 20px;width: 60%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: flex;align-items: center">
-        <div style="display: flex;align-items: center" v-if="showBack">
-          <el-icon @click="back"><back /></el-icon>
+      <div
+          style="float: left;padding-left: 12px;font-size: 20px;width: 60%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: flex;align-items: center">
+        <div v-if="showBack" style="display: flex;align-items: center">
+          <el-icon @click="back">
+            <back/>
+          </el-icon>
           <div style="margin-left: 5px;margin-right: 5px;display: flex;align-items: center">
-              <el-divider direction="vertical"></el-divider>
+            <el-divider direction="vertical"></el-divider>
           </div>
         </div>
         <span v-if="title">{{ title }}</span>
