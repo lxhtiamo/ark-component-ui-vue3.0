@@ -15,6 +15,6 @@ module.exports = {
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     "no-mixed-spaces-and-tabs": 0,//禁止混用tab和空格
     'no-unused-vars': 0,//不能有声明后未被使用的变量或参数
-    'no-case-declarations': 0,
+    'no-case-declarations': 0,//禁止在case 中使用let const等
   }
 }

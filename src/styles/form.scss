@@ -382,6 +382,10 @@ div .avue-form-detail__title {
       padding-left: 2px;
       background-color: #00000000;
     }
+    .el-input__wrapper{
+      box-shadow: unset;
+      padding: 0;
+    }
   }
 }
 

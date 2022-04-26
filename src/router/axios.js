@@ -8,17 +8,17 @@
 import axios from 'axios'
 import store from '@/store/';
 import router from './index'
-import {ElMessage} from 'element-plus'
+import { ElMessage } from 'element-plus'
 import website from '@/const/website';
 import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
-import {baseUrl} from '@/config/env';
+import { baseUrl } from '@/config/env';
 import {saveRouteHash} from "@/util/util";
-
+import {getToken} from "../util/auth";
 axios.defaults.timeout = 10000;
 axios.defaults.baseURL = baseUrl;
 //返回其他状态吗
-axios.defaults.validateStatus = function (status) {
+axios.defaults.validateStatus = function(status) {
     return status >= 200 && status <= 500; // 默认的
 };
 //跨域请求，允许保存cookie
@@ -29,8 +29,10 @@ NProgress.configure({
 });
 //HTTP request拦截
 axios.interceptors.request.use(config => {
-
-    NProgress.start() // start progress bar
+    // start progress bar
+    NProgress.start()
+    let token = getToken() || ''
+    config.headers['Ark-Auth'] = token
     return config
 }, error => {
     return Promise.reject(error)
