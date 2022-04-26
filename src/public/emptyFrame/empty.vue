@@ -1,9 +1,9 @@
 <template>
-  <div style="text-align: center">
+  <div class="empty-box">
     <div style="line-height:15px;margin-top: 20px">
-      <img :height="height" :src="emptyUrl" :width="width">
+      <img :src="emptyUrl" alt="" style="width: 100px;height: 80px">
     </div>
-    <div style="line-height:15px;margin-bottom: 20px;margin-top: 10px">
+    <div style="line-height:15px;margin-bottom: 20px;">
       <span style="font-size: 10px;color: #999999">{{ emptyStr }}</span>
     </div>
 
@@ -27,10 +27,25 @@ export default {
   },
   data() {
     return {
-      emptyUrl: 'img/bg/empty_bg.png',
+      emptyUrl: 'img/bg/empty.png',
       emptyStr: this.emptyContent,
     }
   }
 }
 </script>
 
+<style lang="scss" scoped>
+.empty-box {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #999999;
+}
+</style>
