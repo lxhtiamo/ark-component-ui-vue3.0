@@ -260,3 +260,18 @@ input, textarea {
     justify-content: space-around;
     align-items: center;
 }
+
+// 自定义分页组件样式
+.page-section {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    line-height: 50px;
+    .custom-page-total {
+        font-size: 14px;
+        color: #808ba7;
+        margin-left: 24px;
+    }
+}

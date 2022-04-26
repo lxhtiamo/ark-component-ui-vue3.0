@@ -14,6 +14,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { baseUrl } from '@/config/env';
 import {saveRouteHash} from "@/util/util";
+import {getToken} from "../util/auth";
 axios.defaults.timeout = 10000;
 axios.defaults.baseURL = baseUrl;
 //返回其他状态吗
@@ -28,8 +29,10 @@ NProgress.configure({
 });
 //HTTP request拦截
 axios.interceptors.request.use(config => {
-
-    NProgress.start() // start progress bar
+    // start progress bar
+    NProgress.start()
+    let token = getToken() || ''
+    config.headers['Ark-Auth'] = token
     return config
 }, error => {
     return Promise.reject(error)
