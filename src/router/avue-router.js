@@ -82,13 +82,13 @@ RouterPlugin.install = function (option = {}) {
                     component: (() => {
                         // 判断是否为首路由
                         if (first) {
-                            return import ('../page/index')
+                            return () =>import ('../page/index')
                             // 判断是否为多层路由
                         } else if (isChild && !first) {
-                            return import('../page/index/layout')
+                            return () =>import('../page/index/layout')
                             // 判断是否为最终的页面视图
                         } else {
-                            return import(`../${component}.vue`)
+                            return () =>import(`../${component}.vue`)
                         }
                     })(),
                     name,
@@ -103,7 +103,7 @@ RouterPlugin.install = function (option = {}) {
                     children: !isChild ? (() => {
                         if (first) {
                             oMenu[propsDefault.path] = `${path}`;
-                            let result = import(`../${component}.vue`)
+                            let result = () =>import(`../${component}.vue`)
                             return [{
                                 component: result,
                                 icon: icon,
