@@ -4,7 +4,6 @@ let baseUrl = '/'
 let path = require("path");
 let fs = require('fs');
 let loaderFile = path.resolve(__dirname, "./src/util/loader.js");
-console.log("loaderFile+>>>"+loaderFile)
 fs.utimes(loaderFile, new Date(), new Date(), (err) => {
     if (err)
         console.error("更新文件失败：", err);
