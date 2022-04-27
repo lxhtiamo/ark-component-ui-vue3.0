@@ -5,12 +5,10 @@
         :placeholder="placeholder"
         class="searchClass"
         maxlength="20"
-        @keyup.enter="searchEnterFun"
-    >
+        @keyup.enter="searchEnterFun">
       <template #append>
         <el-button circle icon="Search" @click="searchData"></el-button>
       </template>
-
     </el-input>
   </div>
 </template>
@@ -65,17 +63,24 @@ export default {
   box-sizing: border-box;
   border-radius: 100px;
 }
+.el-input-group--append>.el-input__wrapper{
+  background-color: transparent;
+  box-shadow: none;
+}
 
 .searchClass .el-input-group__append {
   border: none;
-  padding: 0px 20px 0px 0px;
+  padding: 0 20px 0 0;
   background-color: transparent;
 }
 
 .searchClass .el-input__inner {
   height: 32px;
-  line-height: 36px;
+  box-sizing: border-box;
+  line-height: 32px;
   border: none;
   background-color: transparent;
+}.searchClass .el-input-group__append {
+  box-shadow: none;
 }
 </style>
