@@ -454,6 +454,8 @@ div .avue-form-detail__title {
 
 /*输入框插槽的的样式*/
 .append {
+  width: 100%;
+
   .el-input-group--append .el-input__inner {
     border-radius: 4px 0 0 4px !important;
   }
@@ -464,6 +466,7 @@ div .avue-form-detail__title {
     background: $mainColor;
     color: #FFFFFF;
     cursor: pointer;
+    box-shadow: none;
   }
 
   .el-input-group--prepend .el-input__inner, .el-input-group__append:hover {
@@ -476,7 +479,7 @@ div .avue-form-detail__title {
 /*输入框插槽中的span 选择的点击面增大*/
 .spanText {
   margin: 0 -20px;
-  padding: 4px 20px;
+  padding: 0 20px;
   cursor: pointer
 }
 
@@ -492,7 +495,7 @@ div .avue-form-detail__title {
     border-radius: 0 4px 4px 0;
     background: $mainColor;
     color: #FFFFFF;
-
+    box-shadow: none;
   }
 
   .el-input-group--prepend .el-input__inner, .el-input-group__append:hover {
@@ -513,6 +516,7 @@ div .avue-form-detail__title {
     background: $mainColor;
     color: #FFFFFF;
     cursor: pointer;
+    box-shadow: none;
   }
 
   .el-input-group--prepend .el-input__inner, .el-input-group__append:hover {
