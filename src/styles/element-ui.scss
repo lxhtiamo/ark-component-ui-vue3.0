@@ -469,8 +469,7 @@ div.el-dialog__body {
 /*当el-input 有show-word-limit属性时候 把字数统计的背景成透明,*/
 .el-textarea .el-input__count {
   background: #00000000;
-  bottom: 0px;
-  //bottom: -24px; //这个样式是放在输入框的下面
+  bottom: -15px; //这个样式是放在输入框的下面
 }
 
 /*-----<el-dropdown 组件 样式----------- */
