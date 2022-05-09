@@ -591,7 +591,7 @@ export default create({
     // 单元格编辑
     rowCellEdit(row, index) {
       row.$cellEdit = !row.$cellEdit;
-      this.$set(this.list, index, row);
+      //this.$set(this.list, index, row);
     },
     //单元格更新
     rowCellUpdate(row, index) {
@@ -604,7 +604,7 @@ export default create({
                 index,
                 () => {
                   row.$cellEdit = !row.$cellEdit;
-                  this.$set(this.list, index, row);
+                  //this.$set(this.list, index, row);
                 },
                 () => {
                   this.keyBtn = false;
