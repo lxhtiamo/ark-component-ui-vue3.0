@@ -1,4 +1,4 @@
-let CompressionPlugin = require('compression-webpack-plugin');
+//let CompressionPlugin = require('compression-webpack-plugin');
 // 基础路径 注意发布之前要先修改这里
 let baseUrl = '/'
 let path = require("path");
@@ -50,13 +50,13 @@ module.exports = {
         Object.assign(config, {
             optimization
         });
-        config.plugins.push(
+        /*config.plugins.push(
             new CompressionPlugin({
                 test:/\.(js|css)(\?.*)?$/i,//需要压缩的正则
                 threshold: 10240,//文件大小大于这个值时启用压缩
                 deleteOriginalAssets: false//压缩后保留原文件
             })
-        );
+        );*/
 
         config.module.rules.push({
             //匹配js css vue为后缀的文件
