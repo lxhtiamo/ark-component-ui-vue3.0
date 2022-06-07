@@ -1,6 +1,6 @@
 //let CompressionPlugin = require('compression-webpack-plugin');
 // 基础路径 注意发布之前要先修改这里
-let baseUrl = '/'
+let baseUrl = './'
 let path = require("path");
 let fs = require('fs');
 let loaderFile = path.resolve(__dirname, "./src/util/loader.js");
@@ -15,7 +15,7 @@ module.exports = {
     //lintOnSave: false,
     lintOnSave: true,//eslint-loader 是否在保存的时候检查
     devServer: {
-        publicPath: baseUrl // 和 baseUrl 保持一致
+        //publicPath: baseUrl // 和 baseUrl 保持一致
     },
     productionSourceMap: false,
     chainWebpack: (config) => {
