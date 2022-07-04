@@ -50,9 +50,9 @@ export default {
       let redirect_uri = getRedirectUri(window.location);
       let url;
       if (vars['ticket']) {
-        url = baseUrl + '/loginByCas?ticket=' + vars['ticket'] + '&service=' + redirect_uri;
+        url = '/loginByCas?ticket=' + vars['ticket'] + '&service=' + redirect_uri;
       } else if (vars['code']) {
-        url = baseUrl + '/loginByCode?code=' + vars['code'] + '&service=' + redirect_uri;
+        url = '/loginByCode?code=' + vars['code'] + '&service=' + redirect_uri;
       }
       this.$store.dispatch("LoginByCAS", url).then(() => {
         window.location.href = decodeURIComponent(redirect_uri);
