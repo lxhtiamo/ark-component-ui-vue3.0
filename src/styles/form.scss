@@ -361,9 +361,11 @@ div .avue-form-detail__title {
       border: none;
       background-color: #00000000;
     }
-    .el-select .el-input.is-focus .el-input__wrapper{
+
+    .el-select .el-input.is-focus .el-input__wrapper {
       box-shadow: unset !important;
     }
+
     .el-input.is-focus .el-input__wrapper {
       box-shadow: unset !important;
     }

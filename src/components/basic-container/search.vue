@@ -63,7 +63,8 @@ export default {
   box-sizing: border-box;
   border-radius: 100px;
 }
-.el-input-group--append>.el-input__wrapper{
+
+.el-input-group--append > .el-input__wrapper {
   background-color: transparent;
   box-shadow: none;
 }
@@ -80,7 +81,9 @@ export default {
   line-height: 32px;
   border: none;
   background-color: transparent;
-}.searchClass .el-input-group__append {
+}
+
+.searchClass .el-input-group__append {
   box-shadow: none;
 }
 </style>

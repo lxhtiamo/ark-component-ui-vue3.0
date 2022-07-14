@@ -26,7 +26,8 @@
 .el-tip__title {
     line-height: 18px;
 }
-.el-tip_img img{
+
+.el-tip_img img {
     width: 80px;
     height: 80px;
 }

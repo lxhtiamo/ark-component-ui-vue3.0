@@ -33,8 +33,8 @@ axios.interceptors.request.use(config => {
     // start progress bar
     NProgress.start()
     config.headers['Ark-Auth'] = getToken() || '';
-    if (config.method=='get') { //判断get请求 使用axios的get请求时产生缓存，致使请求的数据不是最新的,主要是在ie浏览器中
-        config.params  =  config.params || {};
+    if (config.method == 'get') { //判断get请求 使用axios的get请求时产生缓存，致使请求的数据不是最新的,主要是在ie浏览器中
+        config.params = config.params || {};
         config.params.t = new Date().getTime(); //添加时间戳
     }
     return config

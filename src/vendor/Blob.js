@@ -24,7 +24,8 @@
         try {
             new Blob;
             return;
-        } catch (e) { }
+        } catch (e) {
+        }
     }
 
     // Internally we use a BlobBuilder implementation to base Blob off of
@@ -63,7 +64,7 @@
 
             , ArrayBuffer = view.ArrayBuffer
             , Uint8Array = view.Uint8Array
-            ;
+        ;
         FakeBlob.fake = FB_proto.fake = true;
         while (file_ex_code--) {
             FileException.prototype[file_ex_codes[file_ex_code]] = file_ex_code + 1;
@@ -75,7 +76,7 @@
             var
                 type = blob.type
                 , data_URI_header
-                ;
+            ;
             if (type === null) {
                 type = "application/octet-stream";
             }
@@ -85,7 +86,8 @@
                     return data_URI_header + ";base64," + blob.data;
                 } else if (blob.encoding === "URI") {
                     return data_URI_header + "," + decodeURIComponent(blob.data);
-                } if (btoa) {
+                }
+                if (btoa) {
                     return data_URI_header + ";base64," + btoa(blob.data);
                 } else {
                     return data_URI_header + "," + encodeURIComponent(blob.data);
@@ -108,7 +110,7 @@
                     , buf = new Uint8Array(data)
                     , i = 0
                     , buf_len = buf.length
-                    ;
+                ;
                 for (; i < buf_len; i++) {
                     str += String.fromCharCode(buf[i]);
                 }

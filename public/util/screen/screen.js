@@ -2,7 +2,7 @@ function util() {
     this.flag = true;
     var body = document.body;
     var safe = this;
-    var validVersion = function() {
+    var validVersion = function () {
         var browser = navigator.appName
         var b_version = navigator.appVersion
         var version = b_version.split(";");
@@ -19,7 +19,7 @@ function util() {
             safe.flag = false
         }
     }
-    this.setBody = function() {
+    this.setBody = function () {
         var str = '<div class="el-tip el-tip--warning" id="tip">' +
             '<div class="el-tip_content">' +
             '<span class="el-tip__title">' +
@@ -34,7 +34,7 @@ function util() {
             '</div>';
         body.innerHTML = str + body.innerHTML
     }
-    this.init = function() {
+    this.init = function () {
         validVersion(); //检测浏览器的版本
         return this;
     }
