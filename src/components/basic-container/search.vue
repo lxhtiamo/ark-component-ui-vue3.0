@@ -64,7 +64,7 @@ export default {
   border-radius: 100px;
 }
 
-searchClass.el-input-group--append > .el-input__wrapper {
+.searchClass.el-input-group--append > .el-input__wrapper {
   background-color: transparent;
   box-shadow: none;
 }
