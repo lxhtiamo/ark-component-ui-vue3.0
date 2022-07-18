@@ -1,6 +1,6 @@
 <!--头部-->
 <template>
-  <div style="border-bottom: 1px solid #f0f1f4">
+  <div style="border-bottom: 1px solid #f0f1f4;height: 60px;box-sizing: border-box">
     <div class="topParent">
       <div
           style="float: left;padding-left: 12px;font-size: 20px;width: 60%;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;display: flex;align-items: center">
