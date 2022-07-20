@@ -11,7 +11,7 @@
         <el-divider direction="vertical"></el-divider>
         <el-breadcrumb separator-icon="ArrowRight"
                        style="margin-left: 5px">
-          <el-breadcrumb-item>当前位置：</el-breadcrumb-item>
+          <el-breadcrumb-item>{{ $t('message.currentLocation') }}：</el-breadcrumb-item>
           <el-breadcrumb-item
               v-for="(item, index) in titleList"
               :key="index"
@@ -22,6 +22,19 @@
       </div>
     </div>
     <div class="top-bar__right">
+      <el-dropdown style="margin-right: 20px">
+        <span class="el-dropdown-link" style="display: flex;align-items: center;cursor: pointer">{{ selectValue }} <el-icon
+            class="el-icon--right"><arrow-down/></el-icon></span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item
+                v-for="item in options"
+                :key="item.value"
+                @click="onClickLang(item)">{{ item.label }}
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
       <el-dropdown trigger="click">
         <img
             class="imgs"
@@ -30,7 +43,7 @@
         />
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="toDialog">关于系统</el-dropdown-item>
+            <el-dropdown-item @click="toDialog">{{ $t('message.aboutTheSystem') }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
 
@@ -42,7 +55,7 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item @click="logout">退出系统</el-dropdown-item>
+            <el-dropdown-item @click="logout">{{ $t('message.exitSystem') }}</el-dropdown-item>
           </el-dropdown-menu>
         </template>
 
@@ -54,19 +67,19 @@
         :modal="false"
         append-to-body
         custom-class="about-settings"
-        title="关于系统"
+        :title="$t('message.aboutTheSystem')"
         width="30%">
       <div class="about-sys-logo">
         <img src="img/icon/logo.png"/>
-        <h4>基础</h4>
-        <p style="color: #2f4555">当前版本号:{{ website.sysVersion }}</p>
+        <h4>{{ $t('message.basics') }}</h4>
+        <p style="color: #2f4555">{{ $t('message.currentVersionNumber') }}:{{ website.sysVersion }}</p>
       </div>
       <div class="about-sys-content">
-        <h4>{{ website.sysVersion }}更新内容：</h4>
+        <h4>{{ website.sysVersion }}{{ $t('message.updateContent') }}：</h4>
         <div v-for="(item,i) in website.changeLog" :key="i">
           {{ item }}
         </div>
-        <h4>授权过期时间：</h4>
+        <h4>{{ $t('message.authorizationExpirationTime') }}：</h4>
         <div>{{ licenseInformation && licenseInformation.expireDate ? licenseInformation.expireDate : '' }}</div>
       </div>
     </el-dialog>
@@ -91,12 +104,23 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      licenseInformation: null
+      licenseInformation: null,
+      options: [
+        {
+          value: 'cn',
+          label: '中文'
+        }, {
+          value: 'en',
+          label: 'English'
+        }
+      ],
+      selectValue: '',
     };
   },
   filters: {},
   created() {
     this.getLicenseInfo();
+    this.getLang();
   },
   mounted() {
     listenfullscreen(this.setScreen);
@@ -124,6 +148,27 @@ export default {
     ]),
   },
   methods: {
+    /*获取本地存储的语言*/
+    getLang() {
+      let lang = localStorage.lang == undefined ? 'cn' : localStorage.lang;
+      if (lang) {
+        let obj = this.options.find(item => item.value == lang);
+        if (obj) {
+          this.selectValue = obj.label
+        }
+      }
+    },
+    /*切换语言*/
+    onClickLang(val) {
+      localStorage.setItem('lang', val.value);
+      this.$i18n.locale = val.value;
+      if (val.value) {
+        let obj = this.options.find(item => item.value == val.value);
+        if (obj) {
+          this.selectValue = obj.label
+        }
+      }
+    },
     toDialog() {
       this.dialogVisible = true;
     },

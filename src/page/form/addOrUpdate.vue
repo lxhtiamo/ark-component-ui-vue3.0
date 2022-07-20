@@ -9,7 +9,7 @@
       <el-form
           ref="form"
           :model="formData"
-          :rules="rule"
+          :rules="rules"
           label-width="100px"
           style="margin-left: 10px"
       >
@@ -17,13 +17,13 @@
           <el-col :span="22">
             <el-row :span="24">
               <el-col :span="12">
-                <el-form-item label="用户名:" prop="username">
+                <el-form-item :label="$t('message.userName')" prop="username">
                   <el-input v-model="formData.username" size="default"></el-input>
                 </el-form-item>
               </el-col>
               <el-col :span="12">
-                <el-form-item label="类型:" prop="type">
-                  <el-select v-model="formData.type" placeholder="请选择类型">
+                <el-form-item :label="$t('message.type')" prop="type">
+                  <el-select v-model="formData.type" :placeholder="$t('message.pleaseSelectType')">
                     <el-option
                         v-for="item in options"
                         :key="item.value"
@@ -38,18 +38,18 @@
           </el-col>
           <el-col :span="22">
             <el-col :span="12">
-              <el-form-item label="stars:" prop="stars">
+              <el-form-item label="stars" prop="stars">
                 <el-input v-model="formData.stars" size="default"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="12">
-              <el-form-item label="码云:" prop="address">
+              <el-form-item :label="$t('message.codeCloud')" prop="address">
                 <el-input v-model="formData.address" size="default"></el-input>
               </el-form-item>
             </el-col>
           </el-col>
           <el-col :span="22">
-            <el-form-item label="介绍:" prop="info">
+            <el-form-item :label="$t('message.suggest')" prop="info">
               <el-input
                   v-model="formData.info"
                   :autosize="{ minRows: 2, maxRows: 6 }"
@@ -61,15 +61,15 @@
         </el-row>
       </el-form>
       <div style="position: relative;margin-bottom:20px;text-align: center;">
-        <el-button type="primary" @click="save">保 存</el-button>
-        <el-button @click="close">关 闭</el-button>
+        <el-button type="primary" @click="save">{{ $t('message.conserve') }}</el-button>
+        <el-button @click="close">{{ $t('message.close') }}</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import rule from "./rule";
+import * as publicRule from "../../rules/rules";
 
 export default {
   props: ["unid"],
@@ -85,8 +85,7 @@ export default {
           label: "后端",
         },
       ],
-      rule: rule,
-      title: "表单标题",
+      title: "",
       activeName: "first",
       appealPeopleType: {
         personal: "个人",
@@ -115,7 +114,34 @@ export default {
       formLabelWidth: "120px",
     };
   },
-  computed: {},
+  computed: {
+      /*表单的验证信息中的国际化必须这样放在计算属性中,要不然切换语言就不生效*/
+      rules() {
+          const rules ={
+              username: [
+                  {
+                      required: true,
+                      message: this.$t('message.enterOneUserName'),
+                      trigger: "blur",
+                  },
+                  { required: true, trigger: "blur", validator: publicRule.enCnChar },
+              ],
+              type: [
+                  {
+                      required: true,
+                      message:  this.$t('message.pleaseSelectType'),
+                      trigger: "change",
+                  },
+                  { required: true, trigger: "change", validator: publicRule.enCnChar },
+              ],
+          };
+          // 清空表单验证信息
+          this.$nextTick( () => {
+              this.$refs['form'].resetFields();
+          })
+          return rules;
+      }
+  },
   methods: {
     save() {
       this.$refs.form.validate((valid) => {
@@ -138,12 +164,12 @@ export default {
       //console.log(row);
       if (row.unid) {
         // 编辑
-        this.title = "编辑";
+        this.title = this.$t('message.edit');
         this.reset();
         this.formData = Object.assign(this.formData, row);
       } else {
         // 新增
-        this.title = "新增";
+        this.title = this.$t('message.add');
         this.reset();
       }
       this.dialogFormVisible = true;

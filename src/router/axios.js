@@ -15,6 +15,7 @@ import 'nprogress/nprogress.css' // progress bar style
 import {baseUrl} from '@/config/env';
 import {saveRouteHash} from "@/util/util";
 import {getToken} from "../util/auth";
+import {findErrCode} from "../util/errorCode";
 
 axios.defaults.timeout = 10000;
 axios.defaults.baseURL = baseUrl;
@@ -49,7 +50,7 @@ axios.interceptors.response.use(res => {
         status = res.data.code;
     }
     const statusWhiteList = website.statusWhiteList || [];
-    const message = res.data.msg || '未知错误';
+    let message = res.data.msg || '';
     //如果是401则跳转到登录页面
     if (status === 401) {
         let value = window.location.href.split("#")[1];
@@ -71,10 +72,14 @@ axios.interceptors.response.use(res => {
 
     //如果请求为200则放过，否者默认统一处理,或者在website中配置statusWhiteList白名单自行处理
     if (status !== 200 && !statusWhiteList.includes(status)) {
+        if (findErrCode(res.data.code)) {//查询是否有定制的错误码和错误提示,有就提示出来,
+            message = findErrCode(res.data.code);
+        }
         ElMessage({
             message: message,
             type: 'error'
         })
+        //如果有的接口返回特殊的错误码需要特殊处理的请加入白名单或修改为return Promise.reject(res),自行在接口的catch(err)中捕获并处理
         return Promise.reject(new Error(message))
     }
 

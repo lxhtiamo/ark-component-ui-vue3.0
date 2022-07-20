@@ -1,15 +1,35 @@
 <template>
   <div id="app">
-    <router-view/>
+    <el-config-provider :locale="locale">
+      <router-view/>
+    </el-config-provider>
   </div>
 </template>
 <script>
+import {ElConfigProvider} from 'element-plus'
+import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+
 export default {
+  components: {
+    ElConfigProvider
+  },
   name: 'app',
   data() {
-    return {}
+    return {
+      locale: zhCn
+    }
   },
-  watch: {},
+  watch: {
+    $i18n: {
+      handler(newName, oldName) {
+        if (newName && newName.locale && newName.messages && newName.messages[newName.locale]) {
+          this.locale = newName.messages[newName.locale].el
+        }
+      },
+      deep: true,
+      immediate: true
+    },
+  },
   created() {
   },
   methods: {},
