@@ -11,7 +11,7 @@ import 'ir-component-ui-plus/lib/ir-component-ui-plus.css';
 import basicContainer from './components/basic-container/main'; /*通用组件*/
 import search from './components/basic-container/search'
 import empty from "./public/emptyFrame/empty"
-import echarts from 'echarts'; //引入echarts
+import * as echarts from "echarts"; //引入echarts
 import {loadStyle} from './util/util'
 import * as urls from '@/config/env';
 import {iconfontUrl, iconfontVersion} from '@/config/env';
