@@ -17,16 +17,24 @@ import * as urls from '@/config/env';
 import {iconfontUrl, iconfontVersion} from '@/config/env';
 import './styles/common.scss';
 import * as Icons from '@element-plus/icons-vue' //全局引入图标
+import _ from "lodash"; //lodash 工具类 https://www.lodashjs.com/
+import * as util from "./util/util";
+
 const app = createApp(App).use(store).use(router);
 Object.keys(Icons).forEach(key => {//注册全部图标
     app.component(key, Icons[key])
 })
+
 app.use(IrComponentP)
+app.use(ElementPlus, {locale: zhCn,})//国际化中文
+
 app.component('basicContainer', basicContainer);//注册全局容器
 app.component('search', search);
 app.component('empty', empty);//列表空的提示
+
+app.config.globalProperties.$util = util;//全局注册工具类
 app.config.globalProperties.$echarts = echarts;
-app.use(ElementPlus, {locale: zhCn,})//国际化中文
+app.config.globalProperties._ = _;//引入lodash 工具类
 
 Object.keys(urls).forEach(key => { // 加载相关url地址
     app.config.globalProperties[key] = urls[key];
@@ -77,6 +85,4 @@ app.directive('focus', {
         console.groupEnd('focus-bind');
     }
 });
-app.config.productionTip = false;
-app.config.btnCanClick = true;
 app.mount('#app')
