@@ -16,7 +16,10 @@ function addPath(ele, first) {
     }
     const isChild = ele[propsDefault.children] && ele[propsDefault.children].length !== 0;
     if (!isChild && first) {
-        if (!isURL(ele[propsDefault.path])) {
+        if (ele[propsDefault.path]&&ele[propsDefault.path].includes('/http')){
+            ele[propsDefault.path]=ele[propsDefault.path].replace('/http','http')
+        }
+        if (!isURL(ele[propsDefault.path])){
             ele[propsDefault.path] = ele[propsDefault.path] + '/index'
         }
         return
