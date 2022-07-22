@@ -116,16 +116,28 @@ const user = {
             await dispatch("GetUserOperate");
             return await dispatch("GetUserMenu");
         },
+        /*本地登入*/
+        setLoginToken({commit}, data) {
+            return new Promise((resolve, reject) => {
+                commit('SET_TOKEN', data);
+                commit('DEL_ALL_TAG');
+                commit('CLEAR_LOCK');
+                setToken(data);
+                resolve();
+            })
+        },
         GetUserMenu({commit}, parentId) {
             return new Promise(resolve => {
                 getMenu(parentId).then((res) => {
-                    const data = res.data.data
-                    let menu = deepClone(data);
-                    menu.forEach(ele => {
-                        addPath(ele, true);
-                    })
-                    commit('SET_MENU', menu)
-                    resolve(menu)
+                    const data = res.data.data;
+                    if(data&&Array.isArray(data)){
+                        let menu = deepClone(data);
+                        menu.forEach(ele => {
+                            addPath(ele, true);
+                        })
+                        commit('SET_MENU', menu)
+                        resolve(menu)
+                    }
                 })
             })
         },

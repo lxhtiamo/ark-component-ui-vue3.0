@@ -333,7 +333,7 @@ export function validateTYSHXYDM(rule, value, callback) {
     if (value) {
 
         if (!/[0-9A-HJ-NPQRTUWXY]{2}\d{6}[0-9A-HJ-NPQRTUWXY]{10}/.test(value)) {
-            return callback(new Error('请输入正确的委托部门编码'));
+            return callback(new Error('请输入正确的统一社会信用编码'));
         }
     }
     return callback()
@@ -352,5 +352,52 @@ export function searchRule(value) {
         }
     } else {
         return true;
+    }
+}
+
+
+
+export function areaCode(rule, value, callback) {
+    if (!value) {
+        return callback(new Error('输入不可以为空'));
+    }else {
+        value = value + '';
+        let str = value.trim();
+        if (!str) {
+            return callback(new Error('不能输入空格'))
+        }
+        let pattern = /[1-8][1-7]\d{10}/
+        if (pattern.test(value)) {
+            return callback()
+        }else{
+            return callback(new Error('地区编码有误'))
+        }
+    }
+}
+/*大于零*/
+export function mustNumber1(rule, value, callback) {
+    if (value) {
+        if (!/^([0-9][0-9]*)$/.test(value) || /\./.test(value) || !/\d/.test(value)) {
+            return callback(new Error('必须是数字且不能包含小数点'))
+        }
+    }
+    return callback()
+}
+
+//url
+export function isURL(rule, value, callback) {
+    if (value) {
+        let str = value.trim();
+        if (!str) {
+            return callback(new Error("不能输入空格"));
+        }
+        if (/(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-.,@?^=%&:/~+#]*[\w\-@?^=%&/~+#])?/.test(value)) {
+            callback();
+        } else {
+            return callback(new Error('请输入正确的' + 'URL'));
+        }
+        return callback()
+    } else {
+        callback();
     }
 }

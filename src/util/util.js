@@ -1,5 +1,6 @@
 import {validatenull} from "./validate";
 import {getStore, setStore} from "./store";
+import {ElMessage} from "element-plus";
 //表单序列化
 export const serialize = data => {
     let list = [];
@@ -406,3 +407,160 @@ export const isStringEmpty = (obj) => {
 export const isStringNotEmpty = (obj) => {
     return !isStringEmpty(obj);
 }
+
+
+let _message = "";
+export const showMessage = (err, type = "0") => {
+    if (_message) {
+        _message.closeAll();
+    }
+    _message = ElMessage;
+    switch (type) {
+        case "0":
+            _message.error((err.data && err.data.msg) || err.message);
+            break;
+        case "1":
+            _message.success(err);
+            break;
+        case "2":
+            _message.warning(err);
+            break;
+    }
+};
+
+//表单验证
+export const isValidate = (_this, param) => {
+    return new Promise((resolve, reject) => {
+        if (_this.$refs[param]) {
+            _this.$refs[param].validate((valid, object) => {
+                if (!valid) {
+                    if (object != null) {
+                        for (let key in object) {
+                            if (document.getElementById(key)) {
+                                // document.getElementById(key).scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' })
+                                // document.getElementById(key).scrollIntoView({ block: 'start', behavior: 'smooth'})
+                                document.getElementById(key).scrollIntoView({block: "nearest", behavior: "smooth"});
+                            }
+                            break;
+                        }
+                    }
+                    resolve(false)
+                } else {
+                    resolve(true)
+                }
+            });
+        }
+    });
+};
+
+
+
+/**
+ * 表格跨页勾选记录
+ * list当前页勾选的数据  data接口请求的分页数据  key用于去重的键名 result最终使用的数据
+ */
+export const crudCheck = (list, data, key, result) => {
+
+    //多选事件-跨页选择
+
+    // 没有选择剩余的数据
+    let tempdata = [];
+    let selectDataList = result;
+    for (let item of data) {
+        tempdata.push(item);
+    }
+    if (list.length != null && list.length > 0) {
+        //去重
+        tempdata = unique(list, tempdata, key)
+    }
+    // 选择的数据
+    let newArr = [];
+    for (let item of list) {
+        newArr.push(item);
+    }
+    if (newArr.length > 0) {
+        for (let item of newArr) {
+            selectDataList.push(item);
+        }
+        //去重
+        selectDataList = jsonArrayToFilterByFieldName(selectDataList, key);
+    }
+    //与当前页未选择的数据对比  存在重复删除数据
+    if (tempdata.length != null && tempdata.length > 0) {
+        //去重
+        selectDataList = unique(tempdata, selectDataList, key)
+    }
+
+    //双数组去重
+    function unique(arr1, arr2, key) {
+        let tArr1 = [], tArr2 = [];
+        //for 循环入栈杜绝引用关系
+        for (let item of arr1) {
+            tArr1.push(item)
+        }
+        for (let item of arr2) {
+            tArr2.push(item)
+        }
+        for (let i = 0; i < tArr1.length; i++) {
+            for (let j = 0; j < tArr2.length; j++) {
+                if (tArr1[i][key] == tArr2[j][key]) {
+                    tArr2.splice(j, 1);
+                }
+            }
+        }
+        return tArr2;
+    }
+
+    //已选择的数据与当前页选择的数据去重 单数组
+    function jsonArrayToFilterByFieldName(arr, type) {
+        let newArr = [];
+        let tArr = [];
+        if (arr.length == 0) {
+            return arr;
+        } else {
+            if (type) {
+                for (var i = 0; i < arr.length; i++) {
+                    if (!tArr[arr[i][type]]) {
+                        newArr.push(arr[i]);
+                        tArr[arr[i][type]] = true;
+                    }
+                }
+                return newArr;
+            } else {
+                for (let i = 0; i < arr.length; i++) {
+                    if (!tArr[arr[i]]) {
+                        newArr.push(arr[i]);
+                        tArr[arr[i]] = true;
+                    }
+                }
+                return newArr;
+            }
+        }
+    }
+
+    return selectDataList
+
+}
+
+/**
+ * 表格跨页打钩回显
+ * key 键名  list 已选择的列表 data 当前页数据（表格渲染的所请求的数据）返回打钩数据
+ */
+export const checkCallBack = (key, list, data) => {
+    let temp = [];
+    if (list != null && list.length > 0) {
+        for (let i = 0; i < list.length; i++) {
+            let comp1 = list[i][key];
+            if (data != null && data.length > 0) {
+                for (let j = 0; j < data.length; j++) {
+                    let comp2 = data[j][key];
+                    if (comp1 == comp2) {
+                        temp.push(data[j]);
+                    }
+                }
+            }
+        }
+    }
+
+    return temp
+};

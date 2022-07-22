@@ -16,7 +16,7 @@ export default {
     },
     storePrefix: 'vue-',
     //http的status默认放行不才用统一处理的,
-    statusWhiteList: [406],
+    statusWhiteList: [406,7],
     //配置首页不可关闭
     isFirstPage: false,
     fistPage: {

@@ -54,3 +54,10 @@ function dateFtt(fmt, date) { //author: meizz
             fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
     return fmt;
 }
+
+export const FORMAT_STR_Month = "yyyy-MM";
+export const FORMAT_STR_DATE = "yyyy-MM-dd";
+export const FORMAT_STR_TIME = "yyyy-MM-dd HH:mm";
+export const FORMAT_STR_Month_TIME = "MM-dd HH:mm";
+export const FORMAT_STR_FULL_TIME = "yyyy-MM-dd HH:mm:ss";
+export const FORMAT_STR_FILE_NAME = "yyyyMMdd_HHmmss";

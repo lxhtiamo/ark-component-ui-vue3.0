@@ -22,6 +22,7 @@ const common = {
         themeName: getStore({name: 'themeName'}) || '',
         lockPasswd: getStore({name: 'lockPasswd'}) || '',
         website: website,
+        currentPath: getStore({name: 'currentPath'}) || '',
     },
     actions: {},
     mutations: {
@@ -142,6 +143,9 @@ const common = {
         },
         SET_WEBSITE: (state, website) => {
             state.website = website;
+        },
+        SET_CURRENTPATH: (state, params) => {
+            state.currentPath = params;
         },
     }
 }

@@ -4,7 +4,7 @@ export default [{
     path: '/login',
     name: '登录页',
     component: () =>
-        import ( /* webpackChunkName: "page" */ '@/page/login/index'),
+        import ( /* webpackChunkName: "page" */ '@/page/login/gzw_login'),
     meta: {
         keepAlive: true,
         isTab: false,

@@ -70,9 +70,28 @@ export default {
       if (data.length !== 0) {
         this.$router.$avueRouter.formatRoutes(data, true);
         const routeHash = getStore({name: "routeHash"});
-        if (routeHash) {
+        const firstPath = this.tag && this.tag.value || ''
+        if (routeHash && routeHash != '/wel/index') {
           removeStore({name: "routeHash"});
           this.$router.push({path: routeHash});
+        } else if (firstPath == '/wel/index') {
+          if (data && data.length > 0) {
+            this.getItem(data[0])
+            let path = this.$router.$avueRouter.getPath({
+              src: this.itemInfo.path
+            })
+            if (path && (path.includes('/http') || path.includes('http'))) {
+              path = this.removeHttpOthenStr(path);
+              let src = this.removeHttpOthenStr(this.itemInfo.path);
+              let query = {src: src};
+              this.$router.replace({
+                path: path,
+                query: query
+              })
+            } else {
+              this.$router.replace({path: path})
+            }
+          }
         }
       }
     });
@@ -83,7 +102,7 @@ export default {
     this.init();
   },
   computed: {
-    ...mapGetters(['isLock', 'isCollapse', 'website', 'menu', 'tagCurrent', "screen", "userInfo"]),
+    ...mapGetters(['isLock', 'isCollapse', 'website', 'menu', 'tagCurrent', "screen", "userInfo", 'tag']),
     labelKey() {
       return this.website.menu.props.label || this.config.propsDefault.label
     },
@@ -99,6 +118,19 @@ export default {
   },
   props: [],
   methods: {
+    /*删除http链接多余的错误的字符 后台错误情况会把url菜单返回为/https://www.baidu.com/  然后路径解析就将错就错解析为:/https://www.baidu.com//index,这个方法就是除去前后多余的 */
+    removeHttpOthenStr(path) {
+      if (path.includes("/http")) {
+        path = path.replace('/http', 'http');
+      }
+      if (path.endsWith('/index')) {
+        let i = path.lastIndexOf('/index');
+        if (i > -1) {
+          path = path.substring(0, i);
+        }
+      }
+      return path
+    },
     getAppInfoByAppCode() {
       getAppInfoByAppCode().then(res => {
         this.website.indexTitle = res.data.data.name;
@@ -178,6 +210,13 @@ export default {
         }
       }, 3000);
     },
+    getItem(obj) {
+      if (obj.children && obj.children.length > 0) {
+        this.getItem(obj.children[0])
+      } else {
+        this.itemInfo = obj;
+      }
+    },
   }
 }
 </script>
@@ -195,7 +234,7 @@ export default {
 }
 </style>
 
-<style lang="scss">
+<style lang="scss" media="screen">
 .indexDialogHeight {
   height: 50%;
 
@@ -205,6 +244,20 @@ export default {
 
   .el-tabs__content .el-form {
     margin-top: 15px;
+  }
+}
+
+@media screen and (min-width: 1367px) {
+  .min-div {
+    min-width: 1000px;
+
+  }
+}
+
+@media screen and (max-width: 1367px) {
+  .min-div {
+    min-width: 700px;
+
   }
 }
 </style>

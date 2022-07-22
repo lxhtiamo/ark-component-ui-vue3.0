@@ -31,6 +31,7 @@
         <template #dropdown>
           <el-dropdown-menu>
             <el-dropdown-item @click="toDialog">关于系统</el-dropdown-item>
+            <el-dropdown-item @click="onEditPassword">修改密码</el-dropdown-item>
           </el-dropdown-menu>
         </template>
 
@@ -50,6 +51,7 @@
 
     </div>
     <el-dialog
+        :close-on-click-modal="false"
         v-model="dialogVisible"
         :modal="false"
         append-to-body
@@ -70,6 +72,16 @@
         <div>{{ licenseInformation && licenseInformation.expireDate ? licenseInformation.expireDate : '' }}</div>
       </div>
     </el-dialog>
+    <el-dialog
+        :close-on-click-modal="false"
+        title="修改密码"
+        append-to-body
+        width="30%"
+        customClass="editPasswordDialog"
+        v-model="showPasswordDialog"
+        v-if="showPasswordDialog">
+      <editPasswroddialog ref="editUserFrom" :userInfo="userInfo" @close="dialogPasswordClose"></editPasswroddialog>
+    </el-dialog>
   </div>
 </template>
 <script>
@@ -78,9 +90,10 @@ import {fullscreenToggel, getRedirectUri, listenfullscreen,} from "@/util/util";
 import {casLoginType, casUrl} from '@/config/env';
 import {getStore} from '@/util/store';
 import {getLicenseInfo} from "@/api/user";
+import editPasswroddialog from "./editPasswroddialog";
 
 export default {
-  components: {},
+  components: {editPasswroddialog},
   name: "top",
   props: {
     titleList: {
@@ -91,7 +104,8 @@ export default {
   data() {
     return {
       dialogVisible: false,
-      licenseInformation: null
+      licenseInformation: null,
+      showPasswordDialog: false,//修改密码
     };
   },
   filters: {},
@@ -124,8 +138,15 @@ export default {
     ]),
   },
   methods: {
+    dialogPasswordClose() {
+      this.showPasswordDialog = false;
+    },
     toDialog() {
       this.dialogVisible = true;
+    },
+    /*修改密码*/
+    onEditPassword() {
+      this.showPasswordDialog = true
     },
     getBreadcrumbPath(item) {
       if (item.type == 1) {
@@ -150,15 +171,10 @@ export default {
         type: "warning",
       }).then(() => {
         this.$store.dispatch("LogOut").then(() => {
-          let redirect_uri = getRedirectUri(window.location);
-          let url = '';
-          if (casLoginType == 'portalwork') {
-            url = casUrl + "/logout?userUnid=" + this.userInfo.id + "&service=" + redirect_uri;
-          } else {
-            let extras = getStore({name: 'extras'});
-            url = casUrl + "/notice/logout?redirect_uri=" + redirect_uri + "&app_id=" + extras.appId + "&access_token=" + extras.accessToken;
-          }
-          location.replace(url);
+          this.$router.$avueRouter.clear()
+          this.$router.replace({
+            path: "/login"
+          })
         });
       });
     },
@@ -172,6 +188,15 @@ export default {
 </script>
 
 <style lang="scss">
+
+.editPasswordDialog {
+  div.el-dialog__body {
+    box-sizing: border-box;
+    padding: 0;
+    overflow: auto;
+  }
+}
+
 .about-settings {
   width: 520px;
   background-color: #ffffff;
