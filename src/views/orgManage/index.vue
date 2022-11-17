@@ -44,7 +44,7 @@
                                   title="新增子机构">
                               <el-icon style="cursor: pointer;color: #4955b8"><Plus/></el-icon>
                             </span>
-                            <span style="padding: 0 10px" @click.stop="remove(node, data)" title="删除">
+                            <span style="padding: 0 10px" @click.stop="remove(node, data)" title="删除" v-if="node.level>1">
                                  <el-icon style="cursor: pointer;color: #4955b8"><Delete/></el-icon>
                             </span>
                             <span style="padding: 0 10px" @click.stop="refresh(node, data)"

@@ -15,7 +15,7 @@
       <template v-slot:buttons></template>
     </search-info>
     <div class="screen-table flex-table" style="margin-top: 10px;height: calc(100% - 130px)">
-      <el-table :data="tableData" v-loading="loading" row-key="unid" :header-cell-style="{background: '#F5F6F8'}">
+      <el-table :data="tableData" v-loading="loading" row-key="unid" :header-cell-style="{background: '#F5F6F8'}"
         :tree-props="{children: 'childrenList', hasChildren: 'hasChildren'}">
         <el-table-column label="序号" type="index" width="80px" align="center">
           <template v-slot="{row}">

@@ -49,6 +49,8 @@
 </template>
 <script>
 
+import {getToken} from "../../util/auth";
+
 export default {
   props: {
     hintStr: {//错误提示语
@@ -238,7 +240,10 @@ export default {
     },
     /*/man-ele-power/exportExcel导出模板*/
     download() {
-      let url = this.downloadExcelUrl;
+      let url=this.downloadExcelUrl;
+      if(this.downloadExcelUrl&&!this.downloadExcelUrl.includes("Ark-Auth=")){
+        url =this.downloadExcelUrl +"?Ark-Auth=" + getToken();
+      }
       window.open(url);
     },
 

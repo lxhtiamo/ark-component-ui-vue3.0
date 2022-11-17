@@ -153,7 +153,7 @@ export default {
     setData() {
       this.subList = [];
       let root = this.$refs.treeRef.root;
-      if (root && !root.data && Array.isArray(root.childNodes)) {
+      if (root && Array.isArray(root.childNodes)) {
         this.setList(root.childNodes)
       }
 

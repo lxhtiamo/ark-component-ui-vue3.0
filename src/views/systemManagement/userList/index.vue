@@ -75,7 +75,7 @@ import addOrEdit from "./addOrEdit";
 import {user_delItem, user_findPage} from '@/api/systemManageApi'
 import publicSubTop from "../../../public/publicSubTop";
 import dialogImport from './../../../public/importFile/dialogImport';
-import {baseUrl} from "../../../config/env";
+import {baseUrl, componentPrefix} from "../../../config/env";
 import {importDataFromExcel} from "../../../api/systemManageApi";
 
 export default {

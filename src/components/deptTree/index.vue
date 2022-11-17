@@ -33,6 +33,7 @@
 
 
 import {findList, findOrgList} from '@/api/deptApi'
+import * as publicRule from "@/rules/rules";
 
 export default {
   name: "deptTree",
@@ -139,8 +140,12 @@ export default {
       }
     },
     searchEnterFun() {
-      this.nodeInfo.node.childNodes = []
-      this.loadNode(this.nodeInfo.node, this.nodeInfo.resolve)
+      if (publicRule.searchRule(this.searchParams.name)) {
+        this.nodeInfo.node.childNodes = []
+        this.loadNode(this.nodeInfo.node, this.nodeInfo.resolve)
+      } else {
+        this.$message.warning("包含非法字符，请重新输入")
+      }
     }
   }
 }

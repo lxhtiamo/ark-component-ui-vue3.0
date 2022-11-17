@@ -144,7 +144,7 @@ export default {
         station: [{required: false, trigger: 'blur', message: '请选择职务'}],
         position: [{required: false, trigger: 'blur', message: '请选择岗位'}],
         group: [{required: false, trigger: 'blur', message: '请选择关联企业分组'}],
-        roleName: [{required: false, trigger: 'blur', message: '请选择授权角色'}],
+        roleName: [{required: true, trigger: 'blur', message: '请选择授权角色'}],
         status: [{required: true, trigger: 'blur', message: '请选择状态'}],
         // documentNo: [{validator: passHtmlAndSql, trigger: 'blur'}],
       },
