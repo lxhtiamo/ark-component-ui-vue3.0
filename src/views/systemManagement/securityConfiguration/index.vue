@@ -9,7 +9,7 @@
                style="margin-top: 50px;">
         <el-form-item label="平台用户初始密码" prop="sysUserPwdInit" id="sysUserPwdInit">
           <el-input v-model.trim="formData.sysUserPwdInit" maxlength="50" placeholder="请输入平台用户初始密码"
-                    onkeyup="value=value.replace(/[^-\x22,^\w\.\/]/ig,'')" type="password"
+                    type="password"
                     autoComplete="new-password" show-password></el-input>
         </el-form-item>
         <el-form-item label="错误次数" prop="pwdRetries" id="pwdRetries" class="form-input-item">
@@ -57,7 +57,7 @@ export default {
         pwdStrength: [{required: true, trigger: 'blur', message: '请选择密码强度'}],
         pwdEncryptType: [{required: true, trigger: 'blur', message: '请选择密码加密方式'}],
         sysUserPwdInit: [{required: true, trigger: 'blur', message: '请输入平台用户初始密码'}, {
-          validator: passHtmlAndSql,
+          validator: this.letterOrNum,
           trigger: "blur"
         }],
         pwdRetries: [{required: true, trigger: 'blur', message: '请输入错误次数'}],
@@ -75,6 +75,13 @@ export default {
     this.getDetail();
   },
   methods: {
+    letterOrNum(rule, value, callback){
+      if (!/^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)]|[()])+$)([^(0-9a-zA-Z)]|[()]|[a-z]|[A-Z]|[0-9]){6,40}$/.test(value)) {
+        callback(new Error("至少6个字符,大、小英文字母/数字/特殊符号中两者以上组合"));
+      } else {
+        callback();
+      }
+    },
     submitData() {
       if (this.$util.isValidate(this, 'addItemRef')) {
         this.loading = true;
