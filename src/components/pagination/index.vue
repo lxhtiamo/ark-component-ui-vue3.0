@@ -4,16 +4,17 @@
       background
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="page.currentPage"
-      :page-sizes="page.pageSizes"
-      :page-size="page.pageSize"
+      v-model:current-page="tempPage.currentPage"
+      :page-sizes="page.pageSizes?page.pageSizes:pageSizes"
+      v-model:page-size="tempPage.pageSize"
       :layout="layout"
-      :total="page.total">
+      :total="tempPage.total">
   </el-pagination>
 </template>
 <script>
 export default {
   name: "lwPagination",
+  emits: ['size-change','current-change'],
   props: {
     page: {
       type: Object,
@@ -36,6 +37,18 @@ export default {
       default: true
     }
   },
+  data() {
+    return {
+      tempPage:{
+        total: 0,
+        pageSize: 10,
+        currentPage: 1
+      }
+    }
+  },
+  created() {
+    this.tempPage=this.page
+  },
   methods: {
     handleSizeChange(size) {
       this.$emit('size-change', size)
@@ -45,6 +58,7 @@ export default {
     }
   },
   mounted() {
+   
     /**
      * 如果当前组件在el-form-item表单内部，页码跳转输入框（jumper）blur事件会触发el-form-item的校验，
      * 原本只需将el-input的validate-event配置为false即可，
