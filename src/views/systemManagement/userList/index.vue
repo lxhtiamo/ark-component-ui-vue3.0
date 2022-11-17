@@ -6,23 +6,23 @@
     </el-header>
     <div class="screen-content-div screen-content-div-flex">
       <dept-tree @treeInfo="getTreeInfo"></dept-tree>
-      <div class="screen-right-div">
+      <div class="screen-right-div" style="display: flex;flex-direction: column">
         <p class="screen-right-p">{{ objInfo.name || ' ' }}</p>
-        <searchInfo @search="_search" @reset="_reset">
-          <template v-slot:left>
-            <el-button type="primary" size="default" icon="Plus" @click="addOrEdit()">新增</el-button>
-            <el-button size="default" icon="Upload" @click="improtItem">导入数据</el-button>
-          </template>
-          <el-input v-model.trim="searchParams.account" placeholder="请输入用户账号" style="margin-left: 10px" maxlength="50" clearable
+        <div class="div-search-box">
+          <el-button type="primary" size="default" icon="Plus" @click="addOrEdit()">新增</el-button>
+          <el-button size="default" icon="Upload" @click="improtItem" style="margin-right: 10px">导入数据</el-button>
+          <el-input v-model.trim="searchParams.account" placeholder="请输入用户账号" class="search-Input" maxlength="50" clearable
                     @keyup.enter="_search" @clear="_search"></el-input>
-          <el-input v-model.trim="searchParams.name" placeholder="请输入用户名称" maxlength="50" clearable
+          <el-input v-model.trim="searchParams.name" placeholder="请输入用户名称" maxlength="50" clearable class="search-Input"
                     @keyup.enter="_search" @clear="_search"></el-input>
-          <el-input v-model.trim="searchParams.roleName" placeholder="请输入用户角色" maxlength="50" clearable
+          <el-input v-model.trim="searchParams.roleName" placeholder="请输入用户角色" maxlength="50" clearable class="search-Input"
                     @keyup.enter="_search" @clear="_search"></el-input>
-          <el-input v-model.trim="searchParams.phone" placeholder="请输入手机号码" maxlength="50" clearable
+          <el-input v-model.trim="searchParams.phone" placeholder="请输入手机号码" maxlength="50" clearable class="search-Input"
                     @keyup.enter="_search" @clear="_search"></el-input>
-        </searchInfo>
-        <div class="screen-right-content-div flex-table">
+          <el-button type="primary" @click="_search" size="default">查询</el-button>
+          <el-button @click="_reset" size="default">重置</el-button>
+        </div>
+        <div class="flex-table" style="flex: 1;margin-top: 12px;width: 100%">
           <el-table :data="tableData" v-loading="loading" :header-cell-style="{background: '#F5F6F8'}">
             <el-table-column label="序号" type="index" width="80px" align="center">
               <template v-slot="{$index}">
@@ -97,8 +97,8 @@ export default {
       showDraw: false,
       objInfo: {},
       showImportDialog: false,//上传文件弹窗
-      downloadExcelUrl: baseUrl + '/sys-user/' + "downloadExcel",
-      downloadErrUrl: baseUrl + "/system-files/downloadFromSysTmpdir?fileName=",
+      downloadExcelUrl: baseUrl + componentPrefix + '/sys-user/' + "downloadExcel",
+      downloadErrUrl: baseUrl + componentPrefix + "/system-files/downloadFromSysTmpdir?fileName=",
       importDataFromExcel: importDataFromExcel,
       uploadData: {  //上传参数
         deptCode: "",
@@ -208,6 +208,24 @@ export default {
   font-size: 14px;
 }
 
+.search-Input {
+  margin-right: 10px;
+  width: 160px
+}
+
+.div-search-box {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .el-button {
+    margin-top: 10px;
+  }
+
+  .el-input {
+    margin-top: 10px;
+  }
+}
 
 </style>
 
