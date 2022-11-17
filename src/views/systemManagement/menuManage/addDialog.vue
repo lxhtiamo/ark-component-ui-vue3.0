@@ -32,8 +32,8 @@
       </el-form-item>
 
       <el-form-item label="排序号" prop="sort">
-        <el-input v-model.trim="formData.sort" placeholder="请输入排序号" maxlength="5" t type="text"
-                  onkeyup="value=value.replace(/[^\d]/g,'')"></el-input>
+        <el-input-number placeholder="请输入排序号" v-model="formData.sort" :min="0"
+                         style="width:210px" :max="999" controls-position="right"/>
       </el-form-item>
 
       <el-form-item label="URL" prop="url">
@@ -81,7 +81,7 @@ export default {
       formData: {
         name: '',
         iconPath: '',
-        sort: '',
+        sort: undefined,
         status: '0',
         url: '',
         punid: '',
@@ -132,7 +132,7 @@ export default {
             }
           }
         }],
-        sort: [{required: true, trigger: 'change', message: '请输入排序号'}],
+        sort: [{required: true, trigger: 'blur', message: '请输入排序号',type: 'number'}],
         url: [{required: true, trigger: 'blur', message: '请输入URL'}],
         status: [{required: true, trigger: 'change', message: '请选择状态'}],
         resourceType: [{required: true, trigger: 'change', message: '请选择资源类型'}],
