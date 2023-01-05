@@ -9,7 +9,7 @@ import './permission'; // 权限
 import IrComponentP from 'ir-component-ui-plus';
 import 'ir-component-ui-plus/lib/ir-component-ui-plus.css';
 import basicContainer from './components/basic-container/main'; /*通用组件*/
-import search from './components/basic-container/search'
+//import search from './components/basic-container/search'
 import empty from "./public/emptyFrame/empty"
 import * as echarts from "echarts"; //引入echarts
 import {loadStyle} from './util/util'
@@ -29,7 +29,7 @@ app.use(IrComponentP)
 app.use(ElementPlus, {locale: zhCn,})//国际化中文
 
 app.component('basicContainer', basicContainer);//注册全局容器
-app.component('search', search);
+//app.component('search', search);
 app.component('empty', empty);//列表空的提示
 
 app.config.globalProperties.$util = util;//全局注册工具类
