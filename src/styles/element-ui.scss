@@ -217,7 +217,7 @@ div.el-table__fixed-right::before, div.el-table__fixed::before {
 }*/
 
 /*分页*/
-div.el-pagination {
+/*div.el-pagination {
   .avue-crud__pagination & {
     position: static;
     float: right;
@@ -263,7 +263,7 @@ div.el-pagination {
       }
     }
   }
-}
+}*/
 
 div.avue-crud__pagination {
   padding: 8px 0;
@@ -292,14 +292,14 @@ div.avue-crud__pagination {
 }
 
 /*分页选择页数边框半圆*/
-.el-pagination .el-select .el-input .el-input__inner {
+/*.el-pagination .el-select .el-input .el-input__inner {
   border-radius: 4px;
 }
 
-/*前往x页半圆*/
+!*前往x页半圆*!
 div.el-pagination .el-input .el-input__inner {
   border-radius: 4px;
-}
+}*/
 
 
 /*树形菜单*/
