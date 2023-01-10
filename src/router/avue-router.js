@@ -94,7 +94,7 @@ RouterPlugin.install = function (option = {}) {
                             return () => import(`../${component}.vue`)
                         }
                     })(),
-                    name,
+                    name:name+path,
                     icon,
                     meta,
                     query,
