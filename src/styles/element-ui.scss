@@ -102,7 +102,7 @@
   box-sizing: border-box;
 }
 
-div .el-input__inner {
+/*div .el-input__inner {
   border-color: $borderColor;
   height: 32px;
   line-height: 30px;
@@ -114,7 +114,7 @@ div .el-input__inner {
   &:hover {
     border-color: $borderColor;
   }
-}
+}*/
 
 .el-input-number.is-controls-right {
   .el-input-number__decrease, .el-input-number__increase {
@@ -123,17 +123,17 @@ div .el-input__inner {
 
 }
 
-.el-input-number {
+/*.el-input-number {
   line-height: 32px;
-}
+}*/
 
-.el-select:hover .el-input__inner {
+/*.el-select:hover .el-input__inner {
   border-color: $borderColor;
-}
+}*/
 
-.el-cascader {
+/*.el-cascader {
   line-height: 32px;
-}
+}*/
 
 i.el-input__icon {
   line-height: 32px;
