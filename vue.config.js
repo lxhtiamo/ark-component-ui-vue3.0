@@ -28,6 +28,10 @@ module.exports = {
         entry
             .add('classlist-polyfill')
             .end()
+
+        entry
+            .clear()
+            .add('./src/main.js')
     },
     configureWebpack: config => {
         let optimization = {//将依赖包拆分
