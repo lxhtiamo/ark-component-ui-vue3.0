@@ -19,6 +19,7 @@ import './styles/common.scss';
 import * as Icons from '@element-plus/icons-vue' //全局引入图标
 import _ from "lodash"; //lodash 工具类 https://www.lodashjs.com/
 import * as util from "./util/util";
+import i18n from './i18n/i18n';//国际化包
 
 const app = createApp(App).use(store).use(router);
 Object.keys(Icons).forEach(key => {//注册全部图标
@@ -27,6 +28,7 @@ Object.keys(Icons).forEach(key => {//注册全部图标
 
 app.use(IrComponentP)
 app.use(ElementPlus, {locale: zhCn,})//国际化中文
+app.use(i18n);
 
 app.component('basicContainer', basicContainer);//注册全局容器
 //app.component('search', search);

@@ -1,22 +1,22 @@
 <template>
   <div v-if="show" style="height:100%;">
     <div class="search">
-      <el-button icon="plus" type="primary" @click="addOrUpdate">新增</el-button>
+      <el-button icon="plus" type="primary" @click="addOrUpdate">{{$t('message.add')}}</el-button>
     </div>
     <el-table :data="data" :header-cell-style="{background: '#F5F6F8'}" highlight-current-row>
       <template v-slot:empty>
-        暂无数据
+        {{ $t('message.noData') }}
       </template>
-      <el-table-column label="序号" type="index" width="100">
+      <el-table-column :label="$t('message.number')" type="index" width="100">
         <template v-slot="scope">
           <span>{{ (page.currentPage - 1) * page.pageSize + scope.$index + 1 }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="用户名" prop="username" width="120">
+      <el-table-column :label="$t('message.userName')" prop="username" width="120">
       </el-table-column>
-      <el-table-column label="类型" prop="ype" width="80">
+      <el-table-column :label="$t('message.type')" prop="ype" width="80">
         <template v-slot="scope">
-          <span>{{ scope.row.type == 1 ? "后端" : "前端" }}</span>
+          <span>{{ scope.row.type == 1 ? $t('message.rearEnd'): $t('message.frontEnd') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="starts" prop="starts" width="150">
@@ -26,12 +26,12 @@
           </a>
         </template>
       </el-table-column>
-      <el-table-column label="码云" prop="address"></el-table-column>
-      <el-table-column label="介绍" prop="info"></el-table-column>
-      <el-table-column label="操作" width="180">
+      <el-table-column prop="address" :label="$t('message.codeCloud')"> </el-table-column>
+      <el-table-column prop="info" :label="$t('message.suggest')"> </el-table-column>
+      <el-table-column :label="$t('message.operate')" width="180">
         <template v-slot="scope">
-          <el-button size="small" type="text" @click="addOrUpdate(scope.row)">编辑</el-button>
-          <el-button size="small" type="text" @click="deleteRow(scope.row)">删除</el-button>
+          <el-button size="small" type="text" @click="addOrUpdate(scope.row)">{{$t('message.edit')}}</el-button>
+          <el-button size="small" type="text" @click="deleteRow(scope.row)">{{$t('message.delete')}}</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -54,7 +54,6 @@ export default {
   },
   data() {
     return {
-      drawer: true,
       page: {
         currentPage: 1,
         pageSize: 5,
@@ -133,6 +132,16 @@ export default {
           },
         ],
       },
+        options:[
+            {
+                value: 'cn',
+                label: '中文'
+            }, {
+                value: 'en',
+                label: 'English'
+            }
+        ],
+        selectValue:'',
     };
   },
   computed: {
@@ -145,8 +154,31 @@ export default {
     },
   },
   created() {
+    this.getLang();
   },
   methods: {
+      /*获取本地存储的语言*/
+      getLang(){
+          let lang=localStorage.lang == undefined?'cn':localStorage.lang;
+          if (lang){
+              let obj=  this.options.find(item=>item.value==lang);
+              if (obj){
+                  this.selectValue=obj.label
+              }
+          }
+      },
+      /*切换语言*/
+      onClickLang(val){
+          localStorage.setItem('lang',val.value);
+          this.$i18n.locale = val.value;
+
+          if (val.value){
+              let obj=  this.options.find(item=>item.value==val.value);
+              if (obj){
+                  this.selectValue=obj.label
+              }
+          }
+      },
     addOrUpdate(row) {
       if (row) {
         // 编辑

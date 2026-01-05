@@ -1,0 +1,55 @@
+import zhLocale from 'element-plus/es/locale/lang/zh-cn' //引入element语言包-中文
+const cn = {
+    el: zhLocale,
+    /*国际化对应的语言翻译,每个对应的语言文件xx.js都要写对应的翻译,少写会翻译成message.xxx*/
+    message: {
+        home:'你好',
+        date:'日期',
+        text: '好好学习，天天向上',
+        add: '新增',
+        noData: '暂无数据',
+        number: '序号',
+        userName: '用户名',
+        type: '类型',
+        rearEnd: '后端',
+        frontEnd: '前端',
+        codeCloud: '码云',
+        suggest: '介绍',
+        edit: '编辑',
+        delete: '删除',
+        operate: '操作',
+        currentLocation: '当前位置',
+        aboutTheSystem: '关于系统',
+        exitSystem: '退出系统',
+        currentVersionNumber: '当前版本号',
+        updateContent: '更新内容',
+        authorizationExpirationTime: '授权过期时间',
+        basics: '基础',
+        conserve: '保存',
+        close: '关闭',
+        pleaseSelect: '请选择',
+        please_Select_Type: '@:message.pleaseSelect @:message.type',//拼接
+        pleaseEnter: '请输入',
+        enterOneUserName: '请输入用户名',
+        pleaseSelectType: '请选择类型',
+    },
+    /*后台返回错误提示,请严格按照code_xxx格式添加错误码 xxx为返回的错误码, 因为查找的方式key为code_xxx*/
+    err:{
+        default:'系统忙',
+        code_400:'请求参数有误',
+        code_401:'未登录',
+        code_403:'请求资源不允许访问',
+        code_404:'请求资源不存在',
+        code_500:'系统内部错误',
+        code_1:'验证码错误',
+        code_2:'用户名或密码错误',
+        code_3:'重复值错误',
+        code_4:'保存文件失败',
+        code_5:'获取角色失败',
+        code_6:'非法字符',
+        code_7:'excel导入错误',
+        code_8:'流程错误',
+    },
+}
+
+export default cn;
