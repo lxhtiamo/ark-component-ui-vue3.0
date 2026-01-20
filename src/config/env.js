@@ -1,7 +1,7 @@
 // 配置编译环境和线上环境之间的切换
 let baseUrl = '';
 // 组件的url前缀，dubbo版本是为空，springcloud版本时为对应的system模块
-let componentPrefix = '';
+let componentPrefix = '/analysis-system';
 // 单点登录地址
 let casUrl = '';
 // cas登录方式，portalwork：工作门户，idaas：统一身份认证
@@ -13,6 +13,7 @@ let codeType = 'text';
 const env = process.env
 if (env.NODE_ENV == 'development') {
     baseUrl = `http://localhost:5005/example-business`; // 开发环境地址
+    baseUrl = `http://10.230.4.7:9086/analysis-gateway`; // 开发环境地址
     if (casLoginType == 'portalwork') {
         casUrl = `http://10.230.4.92:9011/hyportalwork/#/casLogin2`;
     } else {
@@ -28,7 +29,7 @@ if (env.NODE_ENV == 'development') {
 
 // 若baseUrl为空时，根据浏览器地址生成后端地址
 if (baseUrl.length == 0) {
-    baseUrl = window.location.protocol + "//" + window.location.host + "/example-business"
+    baseUrl = window.location.protocol + "//" + window.location.host + "/analysis-gateway"
 }
 // 若casUrl为空时，根据浏览器地址生成后端地址
 if (casUrl.length == 0) {
